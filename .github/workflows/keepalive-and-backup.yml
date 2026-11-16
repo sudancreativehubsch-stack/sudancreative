@@ -1,0 +1,37 @@
+# Keeps the free Supabase database from pausing, and saves a weekly backup.
+# Add these in the repo: Settings > Secrets and variables > Actions
+#   SUPABASE_URL, SUPABASE_ANON_KEY   (for the keep-alive)
+#   SUPABASE_DB_URL                   (Supabase > Project Settings > Database > Connection string, "Session pooler")
+# Use a PRIVATE repository: backup files contain your inquiries.
+name: Keep alive and backup
+
+on:
+  schedule:
+    - cron: "17 6 */3 * *"
+    - cron: "43 2 * * 0"
+  workflow_dispatch:
+
+jobs:
+  keepalive:
+    if: github.event_name == 'workflow_dispatch' || github.event.schedule == '17 6 */3 * *'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping the database
+        env:
+          URL: ${{ secrets.SUPABASE_URL }}
+          KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+        run: curl -fsS "$URL/rest/v1/services?select=id&limit=1" -H "apikey: $KEY" -H "Authorization: Bearer $KEY"
+
+  backup:
+    if: github.event_name == 'workflow_dispatch' || github.event.schedule == '43 2 * * 0'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dump the database
+        env:
+          DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+        run: docker run --rm postgres:17 pg_dump "$DB_URL" --schema=public --no-owner --no-privileges > backup.sql
+      - uses: actions/upload-artifact@v4
+        with:
+          name: database-backup-${{ github.run_id }}
+          path: backup.sql
+          retention-days: 60

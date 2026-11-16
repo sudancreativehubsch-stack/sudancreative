@@ -1,0 +1,9 @@
+[
+  {
+    "AllowedOrigins": ["https://sudancreativehub.com", "https://www.sudancreativehub.com", "https://sudan-creative-hub.YOUR-SUBDOMAIN.workers.dev", "http://localhost:3000"],
+    "AllowedMethods": ["PUT", "GET", "HEAD"],
+    "AllowedHeaders": ["Content-Type"],
+    "ExposeHeaders": ["ETag"],
+    "MaxAgeSeconds": 3600
+  }
+]
