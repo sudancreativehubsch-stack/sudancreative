@@ -1495,3 +1495,242 @@ body > * { position: relative; z-index: 1; }
   height: 1rem;
   flex: none;
 }
+
+
+/* ================================================================
+   MODEL GALLERY PHOTO FRAME SHOWCASE — Responsive iPhone & Desktop
+   ================================================================ */
+.model-gallery-section {
+  padding-block: clamp(3rem, 7vw, 6rem);
+  background: radial-gradient(ellipse 90% 70% at 50% 20%, rgba(8, 16, 92, 0.4) 0%, rgba(3, 6, 38, 0.75) 100%);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  position: relative;
+  overflow: hidden;
+}
+.model-gallery__header {
+  margin-bottom: clamp(2rem, 4vw, 3.5rem);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+@media (min-width: 900px) {
+  .model-gallery__header {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+}
+.model-gallery__titles {
+  max-width: 600px;
+}
+.model-gallery__badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--yellow);
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+}
+.model-gallery__title {
+  font-weight: 800;
+  font-size: clamp(1.85rem, 3.8vw, 2.85rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--white);
+  margin: 0;
+}
+.model-gallery__sub {
+  margin: 0.5rem 0 0;
+  color: rgba(255, 255, 255, 0.74);
+  font-size: clamp(0.9rem, 1.4vw, 1.05rem);
+  line-height: 1.5;
+}
+
+/* Category Filter Bar */
+.model-gallery__filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.25rem;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.model-gallery__filter-bar::-webkit-scrollbar {
+  display: none;
+}
+.model-gallery__filter-btn {
+  white-space: nowrap;
+  padding: 0.45rem 1rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+.model-gallery__filter-btn:hover {
+  background: rgba(255, 255, 255, 0.14);
+  color: var(--white);
+  border-color: rgba(251, 199, 1, 0.4);
+}
+.model-gallery__filter-btn--active {
+  background: var(--yellow) !important;
+  color: var(--black) !important;
+  border-color: var(--yellow) !important;
+  box-shadow: 0 0 16px rgba(251, 199, 1, 0.35);
+}
+
+/* Photo Frame Grid: 2 columns on mobile, 3 on tablet, 4 on desktop */
+.model-gallery__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem 0.9rem;
+}
+@media (min-width: 640px) {
+  .model-gallery__grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem 1.4rem;
+  }
+}
+@media (min-width: 1024px) {
+  .model-gallery__grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2.5rem 1.85rem;
+  }
+}
+
+/* Individual Model Photo Frame Card */
+.model-frame-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.model-frame__link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+/* Elegant Photo Frame */
+.model-frame__photo-wrap {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(8, 16, 92, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  transform: translateZ(0);
+}
+@media (min-width: 768px) {
+  .model-frame__photo-wrap {
+    border-radius: 16px;
+  }
+}
+.model-frame-card:hover .model-frame__photo-wrap {
+  transform: translateY(-4px);
+  border-color: rgba(251, 199, 1, 0.5);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(251, 199, 1, 0.18);
+}
+.model-frame__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  transition: transform 0.35s ease;
+}
+.model-frame-card:hover .model-frame__img {
+  transform: scale(1.04);
+}
+
+/* Interactive Hover Overlay */
+.model-frame__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0) 50%);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 1rem;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  z-index: 2;
+}
+.model-frame-card:hover .model-frame__overlay {
+  opacity: 1;
+}
+.model-frame__book-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.85rem;
+  background: var(--yellow);
+  color: var(--black);
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 0.75rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transform: translateY(6px);
+  transition: transform 0.25s ease;
+}
+.model-frame-card:hover .model-frame__book-badge {
+  transform: translateY(0);
+}
+.model-frame__book-badge svg {
+  width: 0.9em;
+  height: 0.9em;
+}
+
+/* Centered High-Fashion Model Typography */
+.model-frame__info {
+  text-align: center;
+  padding-top: 0.65rem;
+}
+@media (min-width: 768px) {
+  .model-frame__info {
+    padding-top: 0.85rem;
+  }
+}
+.model-frame__name {
+  font-weight: 700;
+  font-size: clamp(0.95rem, 1.4vw, 1.18rem);
+  line-height: 1.2;
+  margin: 0;
+  color: var(--white);
+  letter-spacing: -0.01em;
+  transition: color 0.15s ease;
+}
+.model-frame-card:hover .model-frame__name {
+  color: var(--yellow);
+}
+.model-frame__role {
+  font-size: clamp(0.72rem, 1.1vw, 0.82rem);
+  color: rgba(251, 199, 1, 0.9);
+  font-weight: 600;
+  margin: 0.25rem 0 0.15rem;
+}
+.model-frame__specs {
+  display: block;
+  font-size: clamp(0.68rem, 1vw, 0.76rem);
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* Centered Bottom CTA */
+.model-gallery__bottom {
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+  display: flex;
+  justify-content: center;
+}
+.model-gallery__cta-btn {
+  padding-inline: 2rem;
+}

@@ -4,6 +4,7 @@ import { ModelCard } from "@/components/ModelCard";
 import { ReelShowcase } from "@/components/ReelShowcase";
 import { ReelsStrip } from "@/components/ReelsStrip";
 import { BrandShowcase } from "@/components/BrandShowcase";
+import { ModelGallery } from "@/components/ModelGallery";
 import { GrowthArrow, PlayIcon, WhatsAppIcon } from "@/components/Shapes";
 import { getBrandProjects, getClients, getModels, getServices, getSettings, getVideos } from "@/lib/data";
 import { SITE } from "@/lib/site";
@@ -122,23 +123,8 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* ---------- models ---------- */}
-      <section className="section" aria-labelledby="models-title">
-        <div className="wrap">
-          <div className="head">
-            <h2 id="models-title" className="t-h2">Models &amp; talent</h2>
-            <p className="lead muted">Pick the face for your campaign. One tap opens WhatsApp with their name already in the message.</p>
-          </div>
-          {models.length ? (
-            <div className="models">{models.map((m) => <ModelCard key={m.id} m={m} whatsapp={s.whatsapp} />)}</div>
-          ) : (
-            <div className="empty"><p>Model profiles will appear here once they are added.</p></div>
-          )}
-          <p style={{ marginTop: "2.5rem" }}>
-            <Link className="btn btn--yellow" href="/models">See all models <GrowthArrow /></Link>
-          </p>
-        </div>
-      </section>
+      {/* ---------- models photo frame showcase (matching reference) ---------- */}
+      <ModelGallery whatsapp={s.whatsapp} />
 
       {/* ---------- brand showcase (Trusted by the best) ---------- */}
       <BrandShowcase />
