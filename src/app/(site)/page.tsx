@@ -3,6 +3,7 @@ import { Pic } from "@/components/Pic";
 import { ModelCard } from "@/components/ModelCard";
 import { ReelShowcase } from "@/components/ReelShowcase";
 import { ReelsStrip } from "@/components/ReelsStrip";
+import { BrandShowcase } from "@/components/BrandShowcase";
 import { GrowthArrow, PlayIcon, WhatsAppIcon } from "@/components/Shapes";
 import { getBrandProjects, getClients, getModels, getServices, getSettings, getVideos } from "@/lib/data";
 import { SITE } from "@/lib/site";
@@ -139,20 +140,8 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* ---------- clients ---------- */}
-      {clients.length ? (
-        <section className="section--tight" aria-labelledby="clients-title" style={{ paddingBottom: "clamp(4rem,9vw,8rem)" }}>
-          <div className="wrap">
-            <h2 id="clients-title" className="t-h2" style={{ marginBottom: "2rem" }}>Brands that trust us</h2>
-            <ul className="logos">
-              {clients.slice(0, 12).map((c) => (
-                <li key={c.id}><Pic src={c.logo} alt={c.name} small sizes="170px" /></li>
-              ))}
-            </ul>
-            <p style={{ marginTop: "1.75rem" }}><Link className="btn btn--white" href="/clients">All clients <GrowthArrow /></Link></p>
-          </div>
-        </section>
-      ) : null}
+      {/* ---------- brand showcase (Trusted by the best) ---------- */}
+      <BrandShowcase />
 
       {/* ---------- call to action ---------- */}
       <section className="section slab--orange" aria-labelledby="cta-title">
