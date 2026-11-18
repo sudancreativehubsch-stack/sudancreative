@@ -4,8 +4,8 @@ export const SITE = {
   url: (process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000").replace(/\/$/, ""),
   founded: 2020,
   email: "sudancreativehubsch@gmail.com",
-  // The brief lists +24996356578. Change it here or in Admin > Site text.
-  whatsapp: "24996356578",
+  // Confirmed 9-digit Sudan number: +249963565781. Change it here or in Admin > Site text.
+  whatsapp: "249963565781",
   social: {
     facebook: "https://www.facebook.com/share/1Hzfzewp77/",
     instagram: "https://www.instagram.com/sudan_creative_hub?stkn=MW9waGIxZDRycmRpNw==",

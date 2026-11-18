@@ -10,7 +10,7 @@ Website, admin dashboard and content system for Sudan Creative Hub. Built with N
 
 | # | Item | Why |
 |---|------|-----|
-| 1 | **WhatsApp number.** The brief says `+24996356578` (8 digits after 249). The Brand Guidelines footer shows `+249963565781` (9 digits, the normal Sudan length). The first looks like it is missing a final digit. | Every Choose This Model and WhatsApp button uses this number. Confirm it, then fix it in Admin > Site text > WhatsApp number. The default in code is `src/lib/site.ts`. |
+| 1 | **WhatsApp number.** Set to `+249963565781` (9 digits, confirmed brand number). | Every Choose This Model and WhatsApp button uses this number across the site (`src/lib/site.ts`). |
 | 2 | **Legal pages** (Privacy, Terms, Cookies) are sensible templates, not legal advice. | Have a lawyer review them for the markets you serve. |
 | 3 | **Branch addresses** for Egypt and India show "Address to be announced". | Edit in Admin > Site text. |
 | 4 | **Logo.** Only the icon was supplied, so the header pairs it with a typed wordmark. | Send the primary and secondary logo files if you want them used. |

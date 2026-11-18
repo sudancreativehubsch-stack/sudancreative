@@ -24,7 +24,7 @@ export const SETTING_DEFS: SettingDef[] = [
   { key: "mission", group: "About page", label: "Mission", type: "textarea", value: "To empower businesses and brands through integrated marketing and creative production solutions that turn ideas into meaningful results." },
 
   { key: "email", group: "Contact and footer", label: "Public email", type: "text", value: SITE.email },
-  { key: "whatsapp", group: "Contact and footer", label: "WhatsApp number (digits, with country code)", type: "text", help: "Example: 24996356578. Used by every WhatsApp button on the site.", value: SITE.whatsapp },
+  { key: "whatsapp", group: "Contact and footer", label: "WhatsApp number (digits, with country code)", type: "text", help: "Example: 249963565781. Used by every WhatsApp button on the site.", value: SITE.whatsapp },
   { key: "branch_egypt", group: "Contact and footer", label: "Egypt branch address", type: "textarea", value: "Address to be announced." },
   { key: "branch_india", group: "Contact and footer", label: "India branch address", type: "textarea", value: "Address to be announced." },
   { key: "social_facebook", group: "Contact and footer", label: "Facebook link", type: "text", value: SITE.social.facebook },
