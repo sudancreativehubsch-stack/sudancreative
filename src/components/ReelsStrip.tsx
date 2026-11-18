@@ -51,7 +51,7 @@ const DEFAULT_REELS: ReelItem[] = [
 function ReelCard({ item, active = false }: { item: ReelItem; active?: boolean }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [muted, setMuted] = useState(true);
-  const [playing, setPlaying] = useState(true);
+  const [playing, setPlaying] = useState(active);
 
   const toggleSound = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -60,7 +60,7 @@ function ReelCard({ item, active = false }: { item: ReelItem; active?: boolean }
     v.muted = !v.muted;
     setMuted(v.muted);
     if (v.paused) {
-      v.play();
+      v.play().catch(() => {});
       setPlaying(true);
     }
   };
@@ -69,8 +69,7 @@ function ReelCard({ item, active = false }: { item: ReelItem; active?: boolean }
     const v = videoRef.current;
     if (!v) return;
     if (v.paused) {
-      v.play();
-      setPlaying(true);
+      v.play().then(() => setPlaying(true)).catch(() => {});
     } else {
       v.pause();
       setPlaying(false);
@@ -88,10 +87,10 @@ function ReelCard({ item, active = false }: { item: ReelItem; active?: boolean }
         ref={videoRef}
         src={item.src}
         playsInline
-        autoPlay
+        autoPlay={active}
         loop
         muted={muted}
-        preload="metadata"
+        preload={active ? "metadata" : "none"}
         className="reels-strip__video"
       />
 

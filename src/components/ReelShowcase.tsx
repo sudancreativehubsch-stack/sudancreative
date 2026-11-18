@@ -74,7 +74,7 @@ export function ReelShowcase({
           autoPlay
           loop
           muted={muted}
-          preload="auto"
+          preload="metadata"
           className="reel-video"
         />
 
