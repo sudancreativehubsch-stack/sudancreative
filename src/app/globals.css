@@ -10,7 +10,8 @@
   font-style: normal;
   font-weight: 300;
   font-display: swap;
-  src: url("/fonts/LyonArabic-Light.woff2") format("woff2");
+  src: url("/fonts/LyonArabic-Light.otf") format("opentype"),
+       url("/fonts/COMM%20-%20LYON%20ARABIC%20DISPLAY%20LIGHT.OTF") format("opentype");
 }
 
 @font-face {
@@ -18,7 +19,8 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("/fonts/LyonArabic-Regular.woff2") format("woff2");
+  src: url("/fonts/LyonArabic-Regular.otf") format("opentype"),
+       url("/fonts/COMM%20-%20LYON%20ARABIC%20DISPLAY%20REGULAR.OTF") format("opentype");
 }
 
 @font-face {
@@ -26,7 +28,8 @@
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url("/fonts/LyonArabic-Medium.woff2") format("woff2");
+  src: url("/fonts/LyonArabic-Medium.otf") format("opentype"),
+       url("/fonts/COMM%20-%20LYON%20ARABIC%20DISPLAY%20MEDIUM.OTF") format("opentype");
 }
 
 @font-face {
@@ -34,7 +37,8 @@
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url("/fonts/LyonArabic-Bold.woff2") format("woff2");
+  src: url("/fonts/LyonArabic-Bold.otf") format("opentype"),
+       url("/fonts/COMM%20-%20LYON%20ARABIC%20DISPLAY%20BLACK.OTF") format("opentype");
 }
 
 @font-face {
@@ -42,7 +46,8 @@
   font-style: normal;
   font-weight: 900;
   font-display: swap;
-  src: url("/fonts/LyonArabic-Black.woff2") format("woff2");
+  src: url("/fonts/LyonArabic-Black.otf") format("opentype"),
+       url("/fonts/COMM%20-%20LYON%20ARABIC%20DISPLAY%20BLACK.OTF") format("opentype");
 }
 
 :root {
@@ -55,7 +60,7 @@
   --line: rgba(255, 255, 255, 0.22);
   --pad: clamp(1.25rem, 4vw, 3.5rem);
   --max: 1440px;
-  --font: "LyonArabic", "Archivo Variable", "Archivo", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font: "LyonArabic", "Lyon Arabic Display", "Archivo Variable", "Archivo", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 
 *, *::before, *::after { box-sizing: border-box; }

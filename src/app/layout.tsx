@@ -10,16 +10,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <link
           rel="preload"
-          href="/fonts/LyonArabic-Regular.woff2"
+          href="/fonts/LyonArabic-Regular.otf"
           as="font"
-          type="font/woff2"
+          type="font/otf"
           crossOrigin="anonymous"
         />
         <link
           rel="preload"
-          href="/fonts/LyonArabic-Bold.woff2"
+          href="/fonts/LyonArabic-Bold.otf"
           as="font"
-          type="font/woff2"
+          type="font/otf"
           crossOrigin="anonymous"
         />
       </head>
