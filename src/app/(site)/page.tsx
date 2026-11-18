@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { Pic } from "@/components/Pic";
 import { ModelCard } from "@/components/ModelCard";
-import { GrowthArrow, HeroArt, PlayIcon, WhatsAppIcon } from "@/components/Shapes";
+import { ReelShowcase } from "@/components/ReelShowcase";
+import { GrowthArrow, PlayIcon, WhatsAppIcon } from "@/components/Shapes";
 import { getBrandProjects, getClients, getModels, getServices, getSettings, getVideos } from "@/lib/data";
 import { SITE } from "@/lib/site";
 import { slugify, waLink } from "@/lib/utils";
@@ -23,11 +24,33 @@ export default async function Home() {
             <p className="lead hero__intro">{s.hero_intro}</p>
             <div className="btn-row hero__actions">
               <Link className="btn btn--yellow" href="/contact">{s.hero_cta_primary} <GrowthArrow /></Link>
-              <Link className="btn" href="/portfolio">{s.hero_cta_secondary}</Link>
+              <a className="btn btn--ghost-dark" target="_blank" rel="noopener noreferrer" href={waLink(s.whatsapp, `Hello ${SITE.name}, I would like to get a quote.`)}>
+                <WhatsAppIcon /> WhatsApp us
+              </a>
             </div>
-            <p className="hero__markets">Working across Sudan, Egypt, India and the Gulf.</p>
+            <ul className="hero__checklist">
+              <li>
+                <span className="chk-box" aria-hidden="true" />
+                <span>Commercial shoot &amp; cinematic post-production under one dedicated team</span>
+              </li>
+              <li>
+                <span className="chk-box" aria-hidden="true" />
+                <span>Fast turnaround tailored for high-retention Instagram Reels, TikTok &amp; YouTube Shorts</span>
+              </li>
+              <li>
+                <span className="chk-box" aria-hidden="true" />
+                <span>Full creative direction: scriptwriting, talent casting &amp; dynamic motion</span>
+              </li>
+            </ul>
+            <p className="hero__markets">Working across Sudan, Egypt, India and the Gulf. Direct WhatsApp: +249 96 356 5781</p>
           </div>
-          <HeroArt className="hero__art" />
+          <div className="hero__reel-col">
+            <ReelShowcase
+              src="/sample-reel.mp4"
+              title="Sudan Creative Hub"
+              subtitle="Brand Reels, Ads & Commercial Production"
+            />
+          </div>
         </div>
       </section>
 
