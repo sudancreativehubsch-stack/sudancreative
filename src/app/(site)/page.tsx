@@ -25,7 +25,7 @@ export default async function Home() {
             <p className="lead hero__intro">{s.hero_intro}</p>
             <div className="btn-row hero__actions">
               <Link className="btn btn--yellow" href="/contact">{s.hero_cta_primary} <GrowthArrow /></Link>
-              <a className="btn btn--ghost-dark" target="_blank" rel="noopener noreferrer" href={waLink(s.whatsapp, `Hello ${SITE.name}, I would like to get a quote.`)}>
+              <a className="btn btn--white" target="_blank" rel="noopener noreferrer" href={waLink(s.whatsapp, `Hello ${SITE.name}, I would like to get a quote.`)}>
                 <WhatsAppIcon /> WhatsApp us
               </a>
             </div>
@@ -92,7 +92,7 @@ export default async function Home() {
         <div className="wrap">
           <div className="head">
             <h2 id="work-title" className="t-h2">Selected work</h2>
-            <Link className="btn btn--black" href="/portfolio">Full portfolio <GrowthArrow /></Link>
+            <Link className="btn btn--yellow" href="/portfolio">Full portfolio <GrowthArrow /></Link>
           </div>
           <div className="work-split">
             {featuredVideo ? (
@@ -134,7 +134,7 @@ export default async function Home() {
             <div className="empty"><p>Model profiles will appear here once they are added.</p></div>
           )}
           <p style={{ marginTop: "2.5rem" }}>
-            <Link className="btn" href="/models">See all models <GrowthArrow /></Link>
+            <Link className="btn btn--yellow" href="/models">See all models <GrowthArrow /></Link>
           </p>
         </div>
       </section>
@@ -149,7 +149,7 @@ export default async function Home() {
                 <li key={c.id}><Pic src={c.logo} alt={c.name} small sizes="170px" /></li>
               ))}
             </ul>
-            <p style={{ marginTop: "1.75rem" }}><Link className="btn" href="/clients">All clients <GrowthArrow /></Link></p>
+            <p style={{ marginTop: "1.75rem" }}><Link className="btn btn--white" href="/clients">All clients <GrowthArrow /></Link></p>
           </div>
         </section>
       ) : null}
@@ -162,8 +162,8 @@ export default async function Home() {
             <p className="lead" style={{ marginTop: "1.5rem" }}>{s.cta_text}</p>
           </div>
           <div className="btn-row">
-            <Link className="btn btn--black" href="/contact">Start a project <GrowthArrow /></Link>
-            <a className="btn btn--ghost-dark" target="_blank" rel="noopener noreferrer" href={waLink(s.whatsapp, `Hello ${SITE.name}, I would like to start a project.`)}>
+            <Link className="btn btn--yellow" href="/contact">Start a project <GrowthArrow /></Link>
+            <a className="btn btn--white" target="_blank" rel="noopener noreferrer" href={waLink(s.whatsapp, `Hello ${SITE.name}, I would like to start a project.`)}>
               <WhatsAppIcon /> WhatsApp us
             </a>
           </div>
