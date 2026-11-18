@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Pic } from "@/components/Pic";
 import { ModelCard } from "@/components/ModelCard";
 import { ReelShowcase } from "@/components/ReelShowcase";
+import { ReelsStrip } from "@/components/ReelsStrip";
 import { GrowthArrow, PlayIcon, WhatsAppIcon } from "@/components/Shapes";
 import { getBrandProjects, getClients, getModels, getServices, getSettings, getVideos } from "@/lib/data";
 import { SITE } from "@/lib/site";
@@ -82,6 +83,9 @@ export default async function Home() {
           </ul>
         </div>
       </section>
+
+      {/* ---------- client reels strip (between 3rd and 4th section) ---------- */}
+      <ReelsStrip />
 
       {/* ---------- featured projects ---------- */}
       <section className="section slab--yellow" aria-labelledby="work-title">
