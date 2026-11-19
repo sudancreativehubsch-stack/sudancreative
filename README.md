@@ -165,3 +165,5 @@ scripts/             video compression, secret upload
 ```
 
 To add a field to the admin (for example a new model attribute), add it to `src/lib/resources.ts` and the matching column to `supabase/schema.sql`.
+#   s u d a n c r e a t i v e  
+ 
