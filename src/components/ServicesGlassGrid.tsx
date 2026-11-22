@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import { slugify } from "@/lib/utils";
+import { SpotlightCard } from "./SpotlightEffect";
 
 interface ServiceItem {
   id: string;
@@ -137,13 +140,15 @@ export function ServicesGlassGrid() {
           </p>
         </div>
 
-        {/* 3x3 Luxury Frosted Glass Grid */}
+        {/* 3x3 Luxury Frosted Glass Grid with Cursor-Tracking Spotlights */}
         <div className="services-glass-grid">
           {SERVICE_ITEMS.map((s) => (
-            <Link
+            <SpotlightCard
               key={s.id}
+              as={Link}
               href={`/services#${slugify(s.title)}`}
               className="service-glass-card"
+              spotlightColor="rgba(0, 210, 255, 0.22)"
             >
               <div className="service-glass-card__icon-box">
                 {s.icon}
@@ -158,7 +163,7 @@ export function ServicesGlassGrid() {
                   <polyline points="12 5 19 12 12 19" />
                 </svg>
               </div>
-            </Link>
+            </SpotlightCard>
           ))}
         </div>
       </div>
