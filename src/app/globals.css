@@ -548,7 +548,18 @@ h1, h2, h3, h4 { margin: 0; font-weight: 800; }
 
 /* Section Head Glass with Orange Dash Accent */
 .section-head-glass {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
   margin-bottom: clamp(2rem, 4vw, 3.5rem);
+}
+@media (min-width: 768px) {
+  .section-head-glass {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
 }
 .section-head-glass__title-row {
   display: flex;
@@ -572,10 +583,15 @@ h1, h2, h3, h4 { margin: 0; font-weight: 800; }
   letter-spacing: -0.015em;
 }
 .section-head-glass__sub {
-  margin: 0.5rem 0 0;
+  margin: 0;
   color: rgba(255, 255, 255, 0.76);
-  font-size: clamp(0.95rem, 1.4vw, 1.15rem);
-  max-width: 60ch;
+  font-size: clamp(0.95rem, 1.3vw, 1.12rem);
+  max-width: 50ch;
+}
+@media (min-width: 768px) {
+  .section-head-glass__sub {
+    text-align: right;
+  }
 }
 
 /* Hero Title with Golden-Orange Italic Word & Underline Swoosh */
@@ -741,7 +757,7 @@ h1, h2, h3, h4 { margin: 0; font-weight: 800; }
   position: relative;
   display: flex;
   flex-direction: column;
-  padding: clamp(1.6rem, 3vw, 2.25rem);
+  padding: clamp(1.4rem, 2.8vw, 2.25rem);
   border-radius: 20px;
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(10, 24, 85, 0.48) 100%);
   backdrop-filter: blur(20px) saturate(160%);
@@ -757,6 +773,38 @@ h1, h2, h3, h4 { margin: 0; font-weight: 800; }
   transform: translateY(-4px);
   border-color: rgba(0, 210, 255, 0.45);
   box-shadow: 0 20px 48px rgba(0, 0, 0, 0.45), 0 0 25px rgba(0, 160, 255, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+@media (max-width: 639px) {
+  .services-glass-section {
+    padding-block: 2.5rem 3.5rem;
+  }
+  .services-glass-grid {
+    gap: 1rem;
+  }
+  .service-glass-card {
+    padding: 1.25rem 1.25rem 1.15rem;
+    border-radius: 18px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(10, 24, 85, 0.55) 100%);
+  }
+  .service-glass-card__icon-box {
+    width: 42px !important;
+    height: 42px !important;
+    border-radius: 11px !important;
+    margin-bottom: 0.85rem !important;
+  }
+  .service-glass-card__title {
+    font-size: 1.08rem !important;
+    margin-bottom: 0.35rem !important;
+  }
+  .service-glass-card__summary {
+    font-size: 0.88rem !important;
+    line-height: 1.45 !important;
+    margin-bottom: 0.85rem !important;
+  }
+  .service-glass-card__arrow {
+    width: 32px !important;
+    height: 32px !important;
+  }
 }
 .service-glass-card__icon-box {
   width: 48px;

@@ -3,7 +3,7 @@ import { TwistBand } from "@/components/template/TwistBand";
 import { DotPattern } from "@/components/template/DotPattern";
 import { BandUnroll } from "@/components/template/BandUnroll";
 import { RibbonMarquee } from "@/components/template/RibbonMarquee";
-import { BentoServices } from "@/components/BentoServices";
+import { ServicesGlassGrid } from "@/components/ServicesGlassGrid";
 import { ProcessFramework } from "@/components/ProcessFramework";
 import { BrandShowcase } from "@/components/BrandShowcase";
 import { AboutGlassSection } from "@/components/AboutGlassSection";
@@ -163,10 +163,10 @@ export default async function Home() {
       </section>
 
       {/* ==============================================================
-          4. THE 3 BENTO SERVICE SHOWCASES
+          4. WHAT WE DO: 9 LUXURY FROSTED GLASS SERVICES GRID
           ============================================================== */}
       <FadeIn delay={0.1}>
-        <BentoServices />
+        <ServicesGlassGrid />
       </FadeIn>
 
       {/* ==============================================================
