@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { NAV } from "@/lib/site";
 import { LogoMark } from "./Logo";
 import { GrowthArrow } from "./Shapes";
+import { PillNav } from "./template/PillNav";
 
 export function Header() {
   const path = usePathname();
@@ -22,12 +23,6 @@ export function Header() {
     };
   }, [open]);
 
-  const current = (href: string) => {
-    if (!path) return undefined;
-    const isCurrent = href === "/" ? path === "/" : path === href || path.startsWith(href + "/");
-    return isCurrent ? "page" : undefined;
-  };
-
   return (
     <header className="site-header">
       <div className="wrap site-header__bar">
@@ -36,11 +31,18 @@ export function Header() {
           <span className="logo__word">Sudan<br />Creative Hub</span>
         </Link>
 
-        <nav className="nav" aria-label="Main">
-          {NAV.map((n) => (
-            <Link key={n.href} href={n.href} aria-current={current(n.href)}>{n.label}</Link>
-          ))}
-        </nav>
+        {/* Desktop Magnetic Sliding Pill Navigation */}
+        <div className="header-pill-nav-wrap">
+          <PillNav
+            links={NAV.map((n) => ({ label: n.label, href: n.href }))}
+            textColor="rgba(255, 255, 255, 0.85)"
+            activeTextColor="#050b4d"
+            highlightColor="#fbc701"
+            pillColor="rgba(11, 24, 140, 0.45)"
+            borderColor="rgba(255, 255, 255, 0.2)"
+            fontSize={15}
+          />
+        </div>
 
         <Link className="btn btn--primary-pill header-cta" href="/contact">
           Start a Project <GrowthArrow />
@@ -60,7 +62,7 @@ export function Header() {
 
       <nav id="mobile-nav" className="mobile-nav" aria-label="Main" hidden={!open}>
         {NAV.map((n) => (
-          <Link key={n.href} className="mlink" href={n.href} aria-current={current(n.href)}>{n.label}</Link>
+          <Link key={n.href} className="mlink" href={n.href}>{n.label}</Link>
         ))}
         <Link className="btn btn--primary-glow" href="/contact" style={{ marginTop: "2rem" }}>
           Start a project <GrowthArrow />

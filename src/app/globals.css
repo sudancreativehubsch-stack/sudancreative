@@ -62,7 +62,7 @@
   --line: rgba(255, 255, 255, 0.14);
   --pad: clamp(1.25rem, 4vw, 3.5rem);
   --max: 1440px;
-  --font: "LyonArabic", "Lyon Arabic Display", "Archivo Variable", "Archivo", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font: "Roboto", "Helvetica Neue", Helvetica, Arial, system-ui, -apple-system, sans-serif;
 
   /* ---- glassmorphism tokens ---- */
   --glass-bg:          rgba(255, 255, 255, 0.06);
@@ -3981,4 +3981,63 @@ body > * { position: relative; z-index: 1; }
 .showcase-page-intro {
   margin-bottom: 3rem;
   text-align: center;
+}
+
+
+/* Framer ImageScroller Dock Mobile Adaptation */
+@media (max-width: 860px) {
+  .framer-scroller-dock-container {
+    top: auto !important;
+    bottom: 3.5rem !important;
+    right: 50% !important;
+    transform: translateX(50%) !important;
+  }
+  .framer-scroller-thumb-stack {
+    flex-direction: row !important;
+  }
+}
+
+
+/* Header PillNav Responsive Wrapper */
+.header-pill-nav-wrap {
+  display: none;
+}
+@media (min-width: 860px) {
+  .header-pill-nav-wrap {
+    display: flex;
+    align-items: center;
+  }
+}
+
+/* 3D TwistBand Section Wrapper */
+.twistband-hero-section {
+  position: relative;
+  width: 100%;
+  padding-top: clamp(1rem, 3vw, 2.5rem);
+  padding-bottom: clamp(2rem, 5vw, 4rem);
+  overflow: hidden;
+}
+
+.twistband-stage {
+  position: relative;
+  width: 100%;
+  height: clamp(380px, 55vw, 560px);
+  margin-top: 1.5rem;
+  border-radius: 28px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: radial-gradient(circle at 50% 50%, rgba(11, 24, 140, 0.35) 0%, rgba(3, 7, 30, 0.7) 100%);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.band-unroll-wrap {
+  padding: clamp(2.5rem, 5vw, 5rem) 0;
+  position: relative;
+  z-index: 2;
+}
+
+.ribbon-marquee-wrap {
+  padding: clamp(2rem, 4vw, 3.5rem) 0;
+  position: relative;
+  overflow: hidden;
 }

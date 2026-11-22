@@ -1,9 +1,10 @@
 import Link from "next/link";
-import { GlassHeroArt } from "@/components/GlassHeroArt";
+import { TwistBand } from "@/components/template/TwistBand";
+import { DotPattern } from "@/components/template/DotPattern";
+import { BandUnroll } from "@/components/template/BandUnroll";
+import { RibbonMarquee } from "@/components/template/RibbonMarquee";
 import { BentoServices } from "@/components/BentoServices";
 import { ProcessFramework } from "@/components/ProcessFramework";
-import { ImageScroller } from "@/components/ImageScroller";
-import { ResultsShowcase } from "@/components/ResultsShowcase";
 import { BrandShowcase } from "@/components/BrandShowcase";
 import { AboutGlassSection } from "@/components/AboutGlassSection";
 import { ModelGallery } from "@/components/ModelGallery";
@@ -21,27 +22,40 @@ export default async function Home() {
   const s = await getSettings();
 
   return (
-    <div className="home-page">
-      {/* Dynamic Animated Ambient Aurora Glows for Top Hero */}
+    <div className="home-page" style={{ position: "relative", overflowX: "hidden" }}>
+      {/* Dynamic Animated Ambient Aurora Glows */}
       <div className="home-ambient-glow home-ambient-glow--top" aria-hidden="true" />
       <div className="home-ambient-glow home-ambient-glow--mid" aria-hidden="true" />
 
       {/* ==============================================================
-          1. TOP HERO: Luminous Iridescent Aurora & Grotesque Typography
+          1. HERO SECTION WITH 3D TWIST BAND & DOT PATTERN (FROM TEMPLATE)
           ============================================================== */}
-      <section className="hero" aria-labelledby="hero-title">
-        <div className="wrap hero__grid">
-          <div className="hero__content-col">
+      <section className="hero" aria-labelledby="hero-title" style={{ position: "relative" }}>
+        {/* Soft Dot Pattern with Ambient Glow */}
+        <DotPattern
+          dotColor="rgba(255, 255, 255, 0.3)"
+          dotOpacity={0.15}
+          dotSize={1.4}
+          spacing={24}
+          fade={75}
+          glow={true}
+          glowColor="#0b188c"
+          glowOpacity={0.4}
+          glowSize={70}
+        />
+
+        <div className="wrap" style={{ position: "relative", zIndex: 1 }}>
+          <div style={{ maxWidth: "780px", margin: "0 auto", textAlign: "center" }}>
             <FadeIn delay={0.1}>
-              {/* World-Class Live Agency Beacon */}
-              <div className="hero__status-pill">
+              {/* Live Agency Beacon Pill */}
+              <div className="hero__status-pill" style={{ margin: "0 auto 1.5rem" }}>
                 <span className="hero__status-dot" aria-hidden="true" />
                 <span>Available for Select Commercial Films &amp; Campaigns · 2026</span>
               </div>
             </FadeIn>
 
             <FadeIn delay={0.2}>
-              <h1 id="hero-title" className="t-hero hero__title">
+              <h1 id="hero-title" className="t-hero hero__title" style={{ margin: "0 auto 1.25rem" }}>
                 Turning ideas
                 <br />
                 into{" "}
@@ -65,7 +79,7 @@ export default async function Home() {
             </FadeIn>
 
             <FadeIn delay={0.3}>
-              <p className="lead hero__intro">
+              <p className="lead hero__intro" style={{ margin: "0 auto 2rem", maxWidth: "62ch" }}>
                 {s.hero_intro ||
                   "Sudan Creative Hub is an integrated marketing and creative production agency. Strategy, campaigns, film, branding and talent, handled by one dedicated team."}
               </p>
@@ -73,7 +87,7 @@ export default async function Home() {
 
             {/* Action Buttons: Framer Motion Magnetic Soft Pills */}
             <FadeIn delay={0.4}>
-              <div className="btn-row hero__actions">
+              <div className="btn-row hero__actions" style={{ justifyContent: "center", marginBottom: "1.5rem" }}>
                 <MotionPillButton as={Link} className="btn btn--primary-glow" href="/contact">
                   {s.hero_cta_primary || "Start a Project"} <GrowthArrow />
                 </MotionPillButton>
@@ -89,78 +103,81 @@ export default async function Home() {
                 </MotionPillButton>
               </div>
             </FadeIn>
+          </div>
 
-            {/* Mobile Hero Art Insert (Under Buttons on Mobile) */}
-            <div className="hero__art-col hero__art-col--mobile">
-              <GlassHeroArt />
+          {/* 3D TwistBand Interactive WebGL Canvas (Curved Spinning Ring of Cards) */}
+          <FadeIn delay={0.5}>
+            <div className="twistband-stage">
+              <TwistBand
+                pillColor="#fbc701"
+                pillTextColor="#050b4d"
+                hint="Drag to spin 3D showcase · Click any card"
+                hintBottom={25}
+                cardCount={10}
+                autoSpeed={5}
+                radius={4.2}
+                tilt={18}
+                twist={34}
+                borderWidth={1}
+                borderColor="rgba(255, 255, 255, 0.28)"
+              />
             </div>
-
-            {/* 3 Frosted Glass Quick Metric Badges */}
-            <FadeIn delay={0.5}>
-              <div className="hero__badges-row">
-                <div className="hero__badge-pill">
-                  <span className="hero__badge-num">5+</span>
-                  <span className="hero__badge-label">Years of Impact</span>
-                </div>
-                <div className="hero__badge-pill">
-                  <span className="hero__badge-num">9</span>
-                  <span className="hero__badge-label">Core Disciplines</span>
-                </div>
-                <div className="hero__badge-pill">
-                  <span className="hero__badge-num">4</span>
-                  <span className="hero__badge-label">Regional Hubs</span>
-                </div>
-              </div>
-            </FadeIn>
-
-            {/* Checklist items with Soft Rounded Glowing Amber Boxes */}
-            <FadeIn delay={0.6}>
-              <ul className="hero__checklist">
-                <li>
-                  <span className="chk-box-glow" aria-hidden="true" />
-                  <span>Commercial shoot &amp; cinematic post-production under one dedicated team</span>
-                </li>
-                <li>
-                  <span className="chk-box-glow" aria-hidden="true" />
-                  <span>Fast turnaround tailored for high-retention Instagram Reels, TikTok &amp; YouTube Shorts</span>
-                </li>
-                <li>
-                  <span className="chk-box-glow" aria-hidden="true" />
-                  <span>Full creative direction: scriptwriting, talent casting &amp; dynamic motion</span>
-                </li>
-              </ul>
-            </FadeIn>
-
-            <FadeIn delay={0.7}>
-              <p className="hero__markets">
-                Active production across Sudan, Egypt, India and the Arab Gulf. Direct WhatsApp: +249 96 356 5781
-              </p>
-            </FadeIn>
-          </div>
-
-          {/* Desktop Hero Art (Right Column) with Floating Animation */}
-          <div className="hero__art-col hero__art-col--desktop">
-            <GlassHeroArt />
-          </div>
+          </FadeIn>
         </div>
       </section>
 
       {/* ==============================================================
-          2. THE 3 BENTO SERVICE SHOWCASES (MATCHING REFERENCE IMAGE)
+          2. BAND UNROLL: 3D UNROLLING PERSPECTIVE STATS (FROM TEMPLATE)
+          ============================================================== */}
+      <section className="band-unroll-wrap">
+        <div className="wrap">
+          <BandUnroll
+            stats={[
+              { value: 5, suffix: "+", label: "Years Active in Creative Production", image: "/about-studio.jpg" },
+              { value: 120, suffix: "+", label: "Brand Films & Campaigns Built", image: "/models/model-1.jpg" },
+              { value: 98, suffix: "%", label: "Client Retention Across Regions", image: "/models/model-3.jpg" },
+              { value: 4, suffix: " Hubs", label: "Sudan · Egypt · India · Arab Gulf", image: "/models/model-4.jpg" },
+            ]}
+            cardColor="linear-gradient(135deg, rgba(11, 24, 140, 0.8) 0%, rgba(5, 11, 77, 0.95) 100%)"
+            textColor="#ffffff"
+            suffixColor="#fbc701"
+            cardHeight={140}
+            radius={20}
+          />
+        </div>
+      </section>
+
+      {/* ==============================================================
+          3. RIBBON MARQUEE: WAVING ENDLESS CARD RIBBON (FROM TEMPLATE)
+          ============================================================== */}
+      <section className="ribbon-marquee-wrap">
+        <RibbonMarquee
+          ribbonWidth={75}
+          amplitude={55}
+          wavelength={950}
+          cardWidth={85}
+          cardHeight={115}
+          gap={60}
+          speed={50}
+        />
+      </section>
+
+      {/* ==============================================================
+          4. THE 3 BENTO SERVICE SHOWCASES
           ============================================================== */}
       <FadeIn delay={0.1}>
         <BentoServices />
       </FadeIn>
 
       {/* ==============================================================
-          3. OUR BRAND-TO-BUILD FRAMEWORK (PROCESS METHODOLOGY)
+          5. OUR BRAND-TO-BUILD FRAMEWORK (PROCESS METHODOLOGY)
           ============================================================== */}
       <FadeIn delay={0.1}>
         <ProcessFramework />
       </FadeIn>
 
       {/* ==============================================================
-          4. CINEMATIC DARK CANVAS TRANSITION: OUR WORK & REELS STRIP
+          6. CINEMATIC DARK CANVAS: OUR WORK & REELS STRIP
           ============================================================== */}
       <section className="dark-cinema-section" aria-labelledby="work-heading">
         <div className="wrap">
@@ -175,57 +192,47 @@ export default async function Home() {
           </div>
         </div>
 
-        {/* Sticky Interactive Image Scroller Showcase */}
-        <ImageScroller />
-
         {/* 9:16 Client Reels Strip with Interactive Carousel & Modal */}
         <ReelsStrip />
       </section>
 
       {/* ==============================================================
-          5. OUR RESULTS (DATA & SCALE METRICS)
-          ============================================================== */}
-      <FadeIn delay={0.1}>
-        <ResultsShowcase />
-      </FadeIn>
-
-      {/* ==============================================================
-          6. OUR TALENT (COMPACT SPOTLIGHT WITH BUTTON TO FULL ROSTER)
+          7. OUR TALENT: COMPACT SPOTLIGHT (LINKING TO FULL ROSTER)
           ============================================================== */}
       <FadeIn delay={0.1}>
         <ModelGallery whatsapp={s.whatsapp} />
       </FadeIn>
 
       {/* ==============================================================
-          7. OUR PARTNERS (TRUSTED BY THE BEST LOGOS GRID)
+          8. OUR PARTNERS (TRUSTED BY THE BEST LOGOS GRID)
           ============================================================== */}
       <FadeIn delay={0.1}>
         <BrandShowcase />
       </FadeIn>
 
       {/* ==============================================================
-          8. WHAT OUR CLIENTS SAY (TESTIMONIAL CARD BUBBLE)
+          9. WHAT OUR CLIENTS SAY (TESTIMONIAL CARD BUBBLE)
           ============================================================== */}
       <FadeIn delay={0.1}>
         <TestimonialCard />
       </FadeIn>
 
       {/* ==============================================================
-          9. ABOUT US (SPLIT GLASS STUDIO CARD)
+          10. ABOUT US (SPLIT GLASS STUDIO CARD)
           ============================================================== */}
       <FadeIn delay={0.1}>
         <AboutGlassSection aboutText={s.about_intro} />
       </FadeIn>
 
       {/* ==============================================================
-          10. FREQUENTLY ASKED QUESTIONS (ACCORDION)
+          11. FREQUENTLY ASKED QUESTIONS (ACCORDION)
           ============================================================== */}
       <FadeIn delay={0.1}>
         <FaqAccordion />
       </FadeIn>
 
       {/* ==============================================================
-          11. GIANT AMBIENT GLOWING ORB CTA FOOTER
+          12. GIANT AMBIENT GLOWING ORB CTA FOOTER
           ============================================================== */}
       <FadeIn delay={0.1}>
         <AmbientOrbCta whatsapp={s.whatsapp} email={s.email} />
