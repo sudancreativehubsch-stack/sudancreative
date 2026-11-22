@@ -2,6 +2,7 @@ import Link from "next/link";
 import { GlassHeroArt } from "@/components/GlassHeroArt";
 import { BentoServices } from "@/components/BentoServices";
 import { ProcessFramework } from "@/components/ProcessFramework";
+import { ImageScroller } from "@/components/ImageScroller";
 import { ResultsShowcase } from "@/components/ResultsShowcase";
 import { BrandShowcase } from "@/components/BrandShowcase";
 import { AboutGlassSection } from "@/components/AboutGlassSection";
@@ -173,6 +174,9 @@ export default async function Home() {
             </p>
           </div>
         </div>
+
+        {/* Sticky Interactive Image Scroller Showcase */}
+        <ImageScroller />
 
         {/* 9:16 Client Reels Strip with Interactive Carousel & Modal */}
         <ReelsStrip />
