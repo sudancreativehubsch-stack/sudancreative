@@ -127,7 +127,7 @@ export function TwistBand(props: TwistBandProps) {
     labelColor = "rgba(255, 255, 255, 0.7)",
     borderWidth = 1,
     borderColor = "rgba(255, 255, 255, 0.25)",
-    pattern = true,
+    pattern = false,
     patternOpacity = 0.12,
   } = props;
 

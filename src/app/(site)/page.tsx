@@ -112,12 +112,14 @@ export default async function Home() {
                 pillColor="#fbc701"
                 pillTextColor="#050b4d"
                 hint="Drag to spin 3D showcase · Click any card"
-                hintBottom={25}
+                hintBottom={15}
                 cardCount={10}
                 autoSpeed={5}
                 radius={4.2}
                 tilt={18}
                 twist={34}
+                pattern={false}
+                background="transparent"
                 borderWidth={1}
                 borderColor="rgba(255, 255, 255, 0.28)"
               />
