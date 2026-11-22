@@ -1,149 +1,137 @@
 import Link from "next/link";
-import { Pic } from "@/components/Pic";
-import { ModelCard } from "@/components/ModelCard";
-import { ReelShowcase } from "@/components/ReelShowcase";
-import { ReelsStrip } from "@/components/ReelsStrip";
+import { GlassHeroArt } from "@/components/GlassHeroArt";
+import { ServicesGlassGrid } from "@/components/ServicesGlassGrid";
 import { BrandShowcase } from "@/components/BrandShowcase";
+import { AboutGlassSection } from "@/components/AboutGlassSection";
 import { ModelGallery } from "@/components/ModelGallery";
-import { GrowthArrow, PlayIcon, WhatsAppIcon } from "@/components/Shapes";
-import { getBrandProjects, getClients, getModels, getServices, getSettings, getVideos } from "@/lib/data";
+import { ReelsStrip } from "@/components/ReelsStrip";
+import { CtaGlassSection } from "@/components/CtaGlassSection";
+import { GrowthArrow, WhatsAppIcon } from "@/components/Shapes";
+import { getSettings } from "@/lib/data";
 import { SITE } from "@/lib/site";
-import { slugify, waLink } from "@/lib/utils";
+import { waLink } from "@/lib/utils";
 
 export default async function Home() {
-  const [s, services, videos, brands, models, clients] = await Promise.all([
-    getSettings(), getServices(), getVideos(), getBrandProjects({ featured: true, limit: 2 }),
-    getModels({ featured: true, limit: 4 }), getClients(),
-  ]);
-  const featuredVideo = videos.find((v) => v.featured) ?? videos[0];
+  const s = await getSettings();
 
   return (
-    <>
-      {/* ---------- hero ---------- */}
+    <div className="home-page">
+      {/* Ambient background glows */}
+      <div className="home-ambient-glow home-ambient-glow--top" aria-hidden="true" />
+      <div className="home-ambient-glow home-ambient-glow--mid" aria-hidden="true" />
+
+      {/* ---------- 1. HERO ---------- */}
       <section className="hero" aria-labelledby="hero-title">
         <div className="wrap hero__grid">
-          <div>
-            <h1 id="hero-title" className="t-hero">{s.hero_title}</h1>
-            <p className="lead hero__intro">{s.hero_intro}</p>
+          <div className="hero__content-col">
+            <h1 id="hero-title" className="t-hero hero__title">
+              Turning ideas
+              <br />
+              into{" "}
+              <span className="hero__impact-wrap">
+                <em className="hero__impact-word">impact.</em>
+                <svg
+                  className="hero__impact-underline"
+                  viewBox="0 0 240 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M 4 16 C 60 6, 170 4, 236 14 C 180 20, 100 22, 20 22"
+                    fill="#f57210"
+                    opacity="0.95"
+                  />
+                </svg>
+              </span>
+            </h1>
+
+            <p className="lead hero__intro">
+              {s.hero_intro ||
+                "Sudan Creative Hub is an integrated marketing and creative production agency. Strategy, campaigns, film, branding and talent, handled by one team."}
+            </p>
+
+            {/* Action Buttons: Soft Rounded Edges & Glass Styling */}
             <div className="btn-row hero__actions">
-              <Link className="btn btn--yellow" href="/contact">{s.hero_cta_primary} <GrowthArrow /></Link>
-              <a className="btn btn--white" target="_blank" rel="noopener noreferrer" href={waLink(s.whatsapp, `Hello ${SITE.name}, I would like to get a quote.`)}>
+              <Link className="btn btn--primary-glow" href="/contact">
+                {s.hero_cta_primary || "Start a Project"} <GrowthArrow />
+              </Link>
+              <a
+                className="btn btn--glass-pill"
+                target="_blank"
+                rel="noopener noreferrer"
+                href={waLink(s.whatsapp, `Hello ${SITE.name}, I would like to get a quote.`)}
+              >
                 <WhatsAppIcon /> WhatsApp us
               </a>
             </div>
+
+            {/* Mobile Hero Art Insert (Under Buttons on Mobile) */}
+            <div className="hero__art-col hero__art-col--mobile">
+              <GlassHeroArt />
+            </div>
+
+            {/* 3 Frosted Glass Quick Badges */}
+            <div className="hero__badges-row">
+              <div className="hero__badge-pill">
+                <span className="hero__badge-icon" aria-hidden="true">📷</span>
+                <span>Creative Production</span>
+              </div>
+              <div className="hero__badge-pill">
+                <span className="hero__badge-icon" aria-hidden="true">📊</span>
+                <span>Strategic Marketing</span>
+              </div>
+              <div className="hero__badge-pill">
+                <span className="hero__badge-icon" aria-hidden="true">👥</span>
+                <span>Talent &amp; Casting</span>
+              </div>
+            </div>
+
+            {/* Checklist items with Soft Rounded Glowing Amber Boxes */}
             <ul className="hero__checklist">
               <li>
-                <span className="chk-box" aria-hidden="true" />
+                <span className="chk-box-glow" aria-hidden="true" />
                 <span>Commercial shoot &amp; cinematic post-production under one dedicated team</span>
               </li>
               <li>
-                <span className="chk-box" aria-hidden="true" />
+                <span className="chk-box-glow" aria-hidden="true" />
                 <span>Fast turnaround tailored for high-retention Instagram Reels, TikTok &amp; YouTube Shorts</span>
               </li>
               <li>
-                <span className="chk-box" aria-hidden="true" />
+                <span className="chk-box-glow" aria-hidden="true" />
                 <span>Full creative direction: scriptwriting, talent casting &amp; dynamic motion</span>
               </li>
             </ul>
-            <p className="hero__markets">Working across Sudan, Egypt, India and the Gulf. Direct WhatsApp: +249 96 356 5781</p>
+
+            <p className="hero__markets">
+              Working across Sudan, Egypt, India and the Gulf. Direct WhatsApp: +249 96 356 5781
+            </p>
           </div>
-          <div className="hero__reel-col">
-            <ReelShowcase
-              src="/sample-reel.mp4"
-              title="Sudan Creative Hub"
-              subtitle="Brand Reels, Ads & Commercial Production"
-            />
+
+          {/* Desktop Hero Art (Right Column) */}
+          <div className="hero__art-col hero__art-col--desktop">
+            <GlassHeroArt />
           </div>
         </div>
       </section>
 
-      {/* ---------- about ---------- */}
-      <section className="section slab--blue" aria-labelledby="about-title">
-        <div className="wrap">
-          <h2 id="about-title" className="sr-only">About Sudan Creative Hub</h2>
-          <p className="statement">{s.about_intro}</p>
-          <Link className="btn btn--white" href="/about">About Us <GrowthArrow /></Link>
-        </div>
-      </section>
+      {/* ---------- 2. SERVICES 3x3 GLASS GRID ---------- */}
+      <ServicesGlassGrid />
 
-      {/* ---------- services ---------- */}
-      <section className="section" aria-labelledby="services-title">
-        <div className="wrap">
-          <div className="head">
-            <h2 id="services-title" className="t-h2">What we do</h2>
-            <p className="lead muted">Nine services, one team. Use one or combine them.</p>
-          </div>
-          <ul className="index">
-            {services.map((sv) => (
-              <li key={sv.id}>
-                <Link className="index__row" href={`/services#${slugify(sv.title)}`}>
-                  <span className="index__title">{sv.title}</span>
-                  <span className="index__sum">{sv.summary}</span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      {/* ---------- client reels strip (between 3rd and 4th section) ---------- */}
+      {/* ---------- 3. CLIENT REELS STRIP (9:16 PROPORTIONATE) ---------- */}
       <ReelsStrip />
 
-      {/* ---------- featured projects ---------- */}
-      <section className="section slab--yellow" aria-labelledby="work-title">
-        <div className="wrap">
-          <div className="head">
-            <h2 id="work-title" className="t-h2">Selected work</h2>
-            <Link className="btn btn--yellow" href="/portfolio">Full portfolio <GrowthArrow /></Link>
-          </div>
-          <div className="work-split">
-            {featuredVideo ? (
-              <Link className="case-card" href="/portfolio/video" aria-label={`Watch: ${featuredVideo.title}`}>
-                <div className="cine__stage">
-                  {featuredVideo.thumbnail ? <img src={featuredVideo.thumbnail} alt="" loading="lazy" decoding="async" /> : null}
-                  <span className="cine__play" aria-hidden="true"><span className="disc"><PlayIcon /></span></span>
-                </div>
-                <div className="case-card__title">{featuredVideo.title}</div>
-              </Link>
-            ) : (
-              <div className="empty" style={{ background: "var(--black)", color: "var(--white)", borderColor: "var(--black)" }}>
-                <p className="t-h3">Our showreel is being cut.</p>
-                <p className="muted" style={{ marginTop: ".75rem" }}>Video projects appear here as soon as they are uploaded.</p>
-              </div>
-            )}
-            <div className="case-stack">
-              {brands.map((b) => (
-                <Link key={b.id} className="case-card" href={`/portfolio/branding/${b.slug}`}>
-                  <Pic src={b.cover} alt={`${b.title} brand identity`} sizes="(min-width: 900px) 30vw, 100vw" width={800} height={600} />
-                  <div className="case-card__title">{b.title}</div>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ---------- models photo frame showcase (matching reference) ---------- */}
-      <ModelGallery whatsapp={s.whatsapp} />
-
-      {/* ---------- brand showcase (Trusted by the best) ---------- */}
+      {/* ---------- 4. TRUSTED BY THE BEST (BRANDS GLASS CARD) ---------- */}
       <BrandShowcase />
 
-      {/* ---------- call to action ---------- */}
-      <section className="section slab--orange" aria-labelledby="cta-title">
-        <div className="wrap cta">
-          <div>
-            <h2 id="cta-title" className="t-h1">{s.cta_title}</h2>
-            <p className="lead" style={{ marginTop: "1.5rem" }}>{s.cta_text}</p>
-          </div>
-          <div className="btn-row">
-            <Link className="btn btn--yellow" href="/contact">Start a project <GrowthArrow /></Link>
-            <a className="btn btn--white" target="_blank" rel="noopener noreferrer" href={waLink(s.whatsapp, `Hello ${SITE.name}, I would like to start a project.`)}>
-              <WhatsAppIcon /> WhatsApp us
-            </a>
-          </div>
-        </div>
-      </section>
-    </>
+      {/* ---------- 5. ABOUT US (SPLIT GLASS CARD) ---------- */}
+      <AboutGlassSection aboutText={s.about_intro} />
+
+      {/* ---------- 6. MODELS & TALENT GALLERY ---------- */}
+      <ModelGallery whatsapp={s.whatsapp} />
+
+      {/* ---------- 7. CTA (HAVE SOMETHING WORTH CREATING?) ---------- */}
+      <CtaGlassSection title={s.cta_title} text={s.cta_text} />
+    </div>
   );
 }

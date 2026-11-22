@@ -42,13 +42,17 @@ export function Header() {
           ))}
         </nav>
 
-        <Link className="btn btn--yellow header-cta" href="/contact">
-          Start a project <GrowthArrow />
+        <Link className="btn btn--primary-pill header-cta" href="/contact">
+          Start a Project <GrowthArrow />
         </Link>
 
         <button
-          type="button" className="menu-btn" aria-expanded={open} aria-controls="mobile-nav"
-          aria-label={open ? "Close menu" : "Open menu"} onClick={() => setOpen((v) => !v)}
+          type="button"
+          className={`menu-btn menu-btn--glass ${open ? "menu-btn--open" : ""}`}
+          aria-expanded={open}
+          aria-controls="mobile-nav"
+          aria-label={open ? "Close menu" : "Open menu"}
+          onClick={() => setOpen((v) => !v)}
         >
           <span /><span /><span />
         </button>
@@ -58,7 +62,9 @@ export function Header() {
         {NAV.map((n) => (
           <Link key={n.href} className="mlink" href={n.href} aria-current={current(n.href)}>{n.label}</Link>
         ))}
-        <Link className="btn btn--yellow" href="/contact">Start a project <GrowthArrow /></Link>
+        <Link className="btn btn--primary-glow" href="/contact" style={{ marginTop: "2rem" }}>
+          Start a project <GrowthArrow />
+        </Link>
       </nav>
     </header>
   );
