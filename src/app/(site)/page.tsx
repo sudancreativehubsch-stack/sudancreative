@@ -1,13 +1,17 @@
 import Link from "next/link";
 import { GlassHeroArt } from "@/components/GlassHeroArt";
-import { ServicesGlassGrid } from "@/components/ServicesGlassGrid";
+import { BentoServices } from "@/components/BentoServices";
+import { ProcessFramework } from "@/components/ProcessFramework";
+import { ResultsShowcase } from "@/components/ResultsShowcase";
 import { BrandShowcase } from "@/components/BrandShowcase";
 import { AboutGlassSection } from "@/components/AboutGlassSection";
 import { ModelGallery } from "@/components/ModelGallery";
 import { ReelsStrip } from "@/components/ReelsStrip";
-import { CtaGlassSection } from "@/components/CtaGlassSection";
+import { TestimonialCard } from "@/components/TestimonialCard";
+import { FaqAccordion } from "@/components/FaqAccordion";
+import { AmbientOrbCta } from "@/components/AmbientOrbCta";
 import { GrowthArrow, WhatsAppIcon } from "@/components/Shapes";
-import { FadeIn, StaggerGroup, StaggerItem, MotionPillButton } from "@/components/MotionTransitions";
+import { FadeIn, MotionPillButton } from "@/components/MotionTransitions";
 import { getSettings } from "@/lib/data";
 import { SITE } from "@/lib/site";
 import { waLink } from "@/lib/utils";
@@ -17,12 +21,13 @@ export default async function Home() {
 
   return (
     <div className="home-page">
-      {/* Dynamic Animated Ambient Aurora Glows */}
+      {/* Dynamic Animated Ambient Aurora Glows for Top Hero */}
       <div className="home-ambient-glow home-ambient-glow--top" aria-hidden="true" />
       <div className="home-ambient-glow home-ambient-glow--mid" aria-hidden="true" />
-      <div className="home-ambient-glow home-ambient-glow--bottom" aria-hidden="true" />
 
-      {/* ---------- 1. HERO ---------- */}
+      {/* ==============================================================
+          1. TOP HERO: Luminous Iridescent Aurora & Grotesque Typography
+          ============================================================== */}
       <section className="hero" aria-labelledby="hero-title">
         <div className="wrap hero__grid">
           <div className="hero__content-col">
@@ -61,7 +66,7 @@ export default async function Home() {
             <FadeIn delay={0.3}>
               <p className="lead hero__intro">
                 {s.hero_intro ||
-                  "Sudan Creative Hub is an integrated marketing and creative production agency. Strategy, campaigns, film, branding and talent, handled by one team."}
+                  "Sudan Creative Hub is an integrated marketing and creative production agency. Strategy, campaigns, film, branding and talent, handled by one dedicated team."}
               </p>
             </FadeIn>
 
@@ -89,20 +94,20 @@ export default async function Home() {
               <GlassHeroArt />
             </div>
 
-            {/* 3 Frosted Glass Quick Badges */}
+            {/* 3 Frosted Glass Quick Metric Badges */}
             <FadeIn delay={0.5}>
               <div className="hero__badges-row">
                 <div className="hero__badge-pill">
-                  <span className="hero__badge-icon" aria-hidden="true">📷</span>
-                  <span>Creative Production</span>
+                  <span className="hero__badge-num">5+</span>
+                  <span className="hero__badge-label">Years of Impact</span>
                 </div>
                 <div className="hero__badge-pill">
-                  <span className="hero__badge-icon" aria-hidden="true">📊</span>
-                  <span>Strategic Marketing</span>
+                  <span className="hero__badge-num">9</span>
+                  <span className="hero__badge-label">Core Disciplines</span>
                 </div>
                 <div className="hero__badge-pill">
-                  <span className="hero__badge-icon" aria-hidden="true">👥</span>
-                  <span>Talent &amp; Casting</span>
+                  <span className="hero__badge-num">4</span>
+                  <span className="hero__badge-label">Regional Hubs</span>
                 </div>
               </div>
             </FadeIn>
@@ -127,7 +132,7 @@ export default async function Home() {
 
             <FadeIn delay={0.7}>
               <p className="hero__markets">
-                Working across Sudan, Egypt, India and the Gulf. Direct WhatsApp: +249 96 356 5781
+                Active production across Sudan, Egypt, India and the Arab Gulf. Direct WhatsApp: +249 96 356 5781
               </p>
             </FadeIn>
           </div>
@@ -139,34 +144,87 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* ---------- 2. SERVICES 3x3 GLASS GRID ---------- */}
+      {/* ==============================================================
+          2. THE 3 BENTO SERVICE SHOWCASES (MATCHING REFERENCE IMAGE)
+          ============================================================== */}
       <FadeIn delay={0.1}>
-        <ServicesGlassGrid />
+        <BentoServices />
       </FadeIn>
 
-      {/* ---------- 3. CLIENT REELS STRIP (9:16 PROPORTIONATE) ---------- */}
+      {/* ==============================================================
+          3. OUR BRAND-TO-BUILD FRAMEWORK (PROCESS METHODOLOGY)
+          ============================================================== */}
       <FadeIn delay={0.1}>
+        <ProcessFramework />
+      </FadeIn>
+
+      {/* ==============================================================
+          4. CINEMATIC DARK CANVAS TRANSITION: OUR WORK & REELS STRIP
+          ============================================================== */}
+      <section className="dark-cinema-section" aria-labelledby="work-heading">
+        <div className="wrap">
+          <div className="dark-cinema-header">
+            <span className="dark-pill-tag">Portfolio &amp; Selected Works</span>
+            <h2 id="work-heading" className="dark-cinema-title">
+              OUR WORK<span className="dark-dot">.</span>
+            </h2>
+            <p className="dark-cinema-subtitle">
+              Making waves with high-retention commercial films and viral 9:16 social campaigns.
+            </p>
+          </div>
+        </div>
+
+        {/* 9:16 Client Reels Strip with Interactive Carousel & Modal */}
         <ReelsStrip />
-      </FadeIn>
+      </section>
 
-      {/* ---------- 4. TRUSTED BY THE BEST (BRANDS GLASS CARD) ---------- */}
+      {/* ==============================================================
+          5. OUR RESULTS (DATA & SCALE METRICS)
+          ============================================================== */}
       <FadeIn delay={0.1}>
-        <BrandShowcase />
+        <ResultsShowcase />
       </FadeIn>
 
-      {/* ---------- 5. ABOUT US (SPLIT GLASS CARD) ---------- */}
-      <FadeIn delay={0.1}>
-        <AboutGlassSection aboutText={s.about_intro} />
-      </FadeIn>
-
-      {/* ---------- 6. MODELS & TALENT COMPACT SPOTLIGHT (LINKING TO FULL ROSTER PAGE) ---------- */}
+      {/* ==============================================================
+          6. OUR TALENT (COMPACT SPOTLIGHT WITH BUTTON TO FULL ROSTER)
+          ============================================================== */}
       <FadeIn delay={0.1}>
         <ModelGallery whatsapp={s.whatsapp} />
       </FadeIn>
 
-      {/* ---------- 7. CTA (HAVE SOMETHING WORTH CREATING?) ---------- */}
+      {/* ==============================================================
+          7. OUR PARTNERS (TRUSTED BY THE BEST LOGOS GRID)
+          ============================================================== */}
       <FadeIn delay={0.1}>
-        <CtaGlassSection title={s.cta_title} text={s.cta_text} />
+        <BrandShowcase />
+      </FadeIn>
+
+      {/* ==============================================================
+          8. WHAT OUR CLIENTS SAY (TESTIMONIAL CARD BUBBLE)
+          ============================================================== */}
+      <FadeIn delay={0.1}>
+        <TestimonialCard />
+      </FadeIn>
+
+      {/* ==============================================================
+          9. ABOUT US (SPLIT GLASS STUDIO CARD)
+          ============================================================== */}
+      <FadeIn delay={0.1}>
+        <AboutGlassSection aboutText={s.about_intro} />
+      </FadeIn>
+
+      {/* ==============================================================
+          10. FREQUENTLY ASKED QUESTIONS (ACCORDION)
+          ============================================================== */}
+      <FadeIn delay={0.1}>
+        <FaqAccordion />
+      </FadeIn>
+
+      {/* ==============================================================
+          11. GIANT AMBIENT GLOWING ORB CTA FOOTER
+          ============================================================== */}
+      <FadeIn delay={0.1}>
+        <AmbientOrbCta whatsapp={s.whatsapp} email={s.email} />
       </FadeIn>
     </div>
   );
