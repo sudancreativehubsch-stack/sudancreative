@@ -115,7 +115,7 @@ export default async function Home() {
                 hintBottom={15}
                 cardCount={10}
                 autoSpeed={5}
-                radius={4.2}
+                radius={4.8}
                 tilt={18}
                 twist={34}
                 pattern={false}
@@ -154,11 +154,11 @@ export default async function Home() {
           ============================================================== */}
       <section className="ribbon-marquee-wrap">
         <RibbonMarquee
-          ribbonWidth={75}
+          ribbonWidth={85}
           amplitude={55}
-          wavelength={950}
-          cardWidth={85}
-          cardHeight={115}
+          wavelength={960}
+          cardWidth={105}
+          cardHeight={145}
           gap={60}
           speed={50}
         />

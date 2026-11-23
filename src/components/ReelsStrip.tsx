@@ -151,11 +151,11 @@ export function ReelsStrip({
   const trackRef = useRef<HTMLDivElement>(null);
 
   const scrollLeft = () => {
-    trackRef.current?.scrollBy({ left: -320, behavior: "smooth" });
+    trackRef.current?.scrollBy({ left: -340, behavior: "smooth" });
   };
 
   const scrollRight = () => {
-    trackRef.current?.scrollBy({ left: 320, behavior: "smooth" });
+    trackRef.current?.scrollBy({ left: 340, behavior: "smooth" });
   };
 
   return (
