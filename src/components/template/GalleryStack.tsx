@@ -146,36 +146,26 @@ function StackCard({ model, index, total, isTop, onSwipeOut, whatsappNumber }: S
       transition={reduced ? { duration: 0 } : { type: "spring", stiffness: 350, damping: 28 }}
     >
       <div className="gallery-stack__card-inner">
-        {/* Model Photo */}
-        <img
-          src={model.photo}
-          alt={model.name}
-          className="gallery-stack__photo"
-          draggable={false}
-          loading={index < 3 ? "eager" : "lazy"}
-        />
-
-        {/* Ambient Glass Glow Edge */}
-        <div className="gallery-stack__edge-glow" aria-hidden="true" />
-
-        {/* Top Pill: Index Counter + Category */}
-        <div className="gallery-stack__top-bar">
-          <span className="gallery-stack__counter-pill">
-            {String(index + 1).padStart(2, "0")} · {model.category}
-          </span>
-          <span className="gallery-stack__live-dot" aria-hidden="true" />
+        {/* Full Unobstructed Model Poster */}
+        <div className="gallery-stack__media">
+          <img
+            src={model.photo}
+            alt={model.name}
+            className="gallery-stack__photo"
+            draggable={false}
+            loading={index < 3 ? "eager" : "lazy"}
+          />
         </div>
 
-        {/* Bottom Glass Overlay Info */}
+        {/* Dedicated Footer Bar Below Poster (No Image Overlap) */}
         <div className="gallery-stack__bottom-info">
-          <div className="gallery-stack__meta">
-            <h3 className="gallery-stack__name">{model.name}</h3>
-            <p className="gallery-stack__specs">{model.specs}</p>
-          </div>
+          <span className="gallery-stack__counter-pill">
+            {String(index + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
+          </span>
 
           <div className="gallery-stack__actions">
             <a
-              href={waLink(whatsappNumber, `Hello Sudan Creative Hub, I would like to book model ${model.name} for a project.`)}
+              href={waLink(whatsappNumber, `Hello Sudan Creative Hub, I would like to book ${model.name} for a project.`)}
               target="_blank"
               rel="noopener noreferrer"
               className="gallery-stack__book-btn"
