@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export interface ReelItem {
   id: string;
@@ -30,9 +30,9 @@ const DEFAULT_REELS: ReelItem[] = [
   },
   {
     id: "reel-3",
-    src: "https://res.cloudinary.com/npq7nirg/video/upload/q_auto:good,w_720,f_mp4/v1795630062/%D8%B9%D9%85%D8%B1%D8%A9_%D8%A8%D8%AE%D8%AF%D9%85%D8%A7%D8%AA.mp4",
-    poster: "https://res.cloudinary.com/npq7nirg/video/upload/so_1,w_640,q_auto,f_webp/v1795630062/%D8%B9%D9%85%D8%B1%D8%A9_%D8%A8%D8%AE%D8%AF%D9%85%D8%A7%D8%AA.jpg",
-    client: "High-Retention Reel",
+    src: "https://res.cloudinary.com/npq7nirg/video/upload/w_720,h_1280,c_scale,q_auto:good,f_mp4/v1795630062/%D8%B9%D9%85%D8%B1%D8%A9_%D8%A8%D8%AE%D8%AF%D9%85%D8%A7%D8%AA.mp4",
+    poster: "https://res.cloudinary.com/npq7nirg/video/upload/so_1,w_720,h_1280,c_scale,q_auto,f_webp/v1795630062/%D8%B9%D9%85%D8%B1%D8%A9_%D8%A8%D8%AE%D8%AF%D9%85%D8%A7%D8%AA.jpg",
+    client: "Reel 3",
     tag: "Social Campaign & Ads",
     dotColor: "#fbc701",
   },
@@ -104,16 +104,8 @@ function ReelCard({ item, active = false }: { item: ReelItem; active?: boolean }
         </div>
       )}
 
-      {/* Bottom overlay: Client pill + Sound button */}
+      {/* Bottom overlay: Sound button only (no text labels) */}
       <div className="reels-strip__bottom">
-        <div className="reels-strip__pill">
-          <span
-            className="reels-strip__dot"
-            style={{ backgroundColor: item.dotColor || "var(--yellow)" }}
-          />
-          <span className="reels-strip__client-name">{item.client}</span>
-        </div>
-
         <button
           type="button"
           className="reels-strip__sound-btn"
@@ -148,14 +140,54 @@ export function ReelsStrip({
   reels?: ReelItem[];
 }) {
   const trackRef = useRef<HTMLDivElement>(null);
+  const pausedRef = useRef(false);
+
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    const reduced = typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    if (reduced) return;
+
+    let rafId = 0;
+    let carry = 0;
+
+    const tick = () => {
+      if (!pausedRef.current && track.scrollWidth > track.clientWidth) {
+        carry += 0.4;
+        if (carry >= 1) {
+          const step = Math.floor(carry);
+          carry -= step;
+          track.scrollLeft += step;
+          const half = track.scrollWidth / 2;
+          if (half > 0 && track.scrollLeft >= half) {
+            track.scrollLeft -= half;
+          }
+        }
+      }
+      rafId = requestAnimationFrame(tick);
+    };
+
+    rafId = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafId);
+  }, [reels.length]);
 
   const scrollLeft = () => {
-    trackRef.current?.scrollBy({ left: -340, behavior: "smooth" });
+    const track = trackRef.current;
+    if (!track) return;
+    const half = track.scrollWidth / 2;
+    if (track.scrollLeft <= 10 && half > 0) {
+      track.scrollLeft += half;
+    }
+    track.scrollBy({ left: -340, behavior: "smooth" });
   };
 
   const scrollRight = () => {
-    trackRef.current?.scrollBy({ left: 340, behavior: "smooth" });
+    const track = trackRef.current;
+    if (!track) return;
+    track.scrollBy({ left: 340, behavior: "smooth" });
   };
+
+  const loopedReels = [...reels, ...reels];
 
   return (
     <section className="section slab--dark reels-strip-section" aria-labelledby="reels-strip-title">
@@ -193,11 +225,17 @@ export function ReelsStrip({
           </div>
         </div>
 
-        {/* Horizontal Carousel Track */}
-        <div className="reels-strip__track-wrapper">
+        {/* Horizontal Carousel Track (Slow Infinite Loop) */}
+        <div
+          className="reels-strip__track-wrapper"
+          onMouseEnter={() => { pausedRef.current = true; }}
+          onMouseLeave={() => { pausedRef.current = false; }}
+          onTouchStart={() => { pausedRef.current = true; }}
+          onTouchEnd={() => { pausedRef.current = false; }}
+        >
           <div ref={trackRef} className="reels-strip__track">
-            {reels.map((item, idx) => (
-              <ReelCard key={item.id} item={item} active={idx === 2} />
+            {loopedReels.map((item, idx) => (
+              <ReelCard key={`${item.id}-${idx}`} item={item} active={false} />
             ))}
           </div>
         </div>

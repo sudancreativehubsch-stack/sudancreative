@@ -1800,12 +1800,12 @@ dialog.lb::backdrop { background: #000; }
   display: flex;
   gap: 0.85rem;
   overflow-x: auto;
-  scroll-behavior: smooth;
-  scroll-snap-type: x mandatory;
   padding: 0.35rem 0.25rem 1rem;
   -webkit-overflow-scrolling: touch;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(251, 199, 1, 0.35) transparent;
+  scrollbar-width: none;
+}
+.reels-strip__track::-webkit-scrollbar {
+  display: none;
 }
 @media (min-width: 768px) {
   .reels-strip__track {
@@ -1919,7 +1919,7 @@ dialog.lb::backdrop { background: #000; }
   right: 8px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 6px;
   z-index: 3;
   pointer-events: none;
