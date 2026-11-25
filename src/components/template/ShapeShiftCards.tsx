@@ -11,6 +11,7 @@ export interface ShapeShiftCardItem {
   detail?: string;
   cta?: string;
   link?: string;
+  icon?: string;
   shape?: "flower" | "orbit" | "diamond" | "star";
   background?: string;
   shapeColor?: string;
@@ -25,6 +26,7 @@ export const DEFAULT_SERVICES_ITEMS: ShapeShiftCardItem[] = [
     detail: "Comprehensive market positioning, competitor analysis & high-converting campaign roadmaps.",
     cta: "Explore Strategy",
     link: "/services#marketing-strategy-consulting",
+    icon: "/icons/strategy.webp",
     shape: "flower",
     background: "linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(11, 24, 140, 0.5) 100%)",
     shapeColor: "#f57210",
@@ -37,6 +39,7 @@ export const DEFAULT_SERVICES_ITEMS: ShapeShiftCardItem[] = [
     detail: "4K cinema cameras, bespoke sound design, cinematic color grade & fast 48h turnaround.",
     cta: "Explore Films",
     link: "/services#video-production",
+    icon: "/icons/video.webp",
     shape: "orbit",
     background: "linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(9, 18, 107, 0.55) 100%)",
     shapeColor: "#00d2ff",
@@ -49,6 +52,7 @@ export const DEFAULT_SERVICES_ITEMS: ShapeShiftCardItem[] = [
     detail: "Bespoke bilingual Arabic & English typography, luxury packaging & distinctive design systems.",
     cta: "Explore Branding",
     link: "/services#branding-visual-identity",
+    icon: "/icons/branding.webp",
     shape: "diamond",
     background: "linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(14, 28, 120, 0.5) 100%)",
     shapeColor: "#fbc701",
@@ -61,6 +65,7 @@ export const DEFAULT_SERVICES_ITEMS: ShapeShiftCardItem[] = [
     detail: "High-impact social assets, street-level out-of-home campaigns & print packaging.",
     cta: "Explore Design",
     link: "/services#graphic-design",
+    icon: "/icons/graphics.webp",
     shape: "orbit",
     background: "linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(11, 24, 140, 0.5) 100%)",
     shapeColor: "#a855f7",
@@ -73,6 +78,7 @@ export const DEFAULT_SERVICES_ITEMS: ShapeShiftCardItem[] = [
     detail: "Direct access to our curated roster of commercial models & editorial talent across the region.",
     cta: "View Talent",
     link: "/models",
+    icon: "/icons/models.webp",
     shape: "flower",
     background: "linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(15, 23, 85, 0.55) 100%)",
     shapeColor: "#f57210",
@@ -85,6 +91,7 @@ export const DEFAULT_SERVICES_ITEMS: ShapeShiftCardItem[] = [
     detail: "Studio commercial photography, editorial fashion sets & dynamic location coverage.",
     cta: "Explore Shoots",
     link: "/services#photography-commercial-production",
+    icon: "/icons/photography.webp",
     shape: "diamond",
     background: "linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(11, 24, 140, 0.5) 100%)",
     shapeColor: "#00d2ff",
@@ -97,6 +104,7 @@ export const DEFAULT_SERVICES_ITEMS: ShapeShiftCardItem[] = [
     detail: "Bilingual hooks, episodic commercial series & high-retention social script treatments.",
     cta: "Explore Content",
     link: "/services#creative-content-scriptwriting",
+    icon: "/icons/creative.webp",
     shape: "flower",
     background: "linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(9, 18, 107, 0.55) 100%)",
     shapeColor: "#fbc701",
@@ -109,6 +117,7 @@ export const DEFAULT_SERVICES_ITEMS: ShapeShiftCardItem[] = [
     detail: "End-to-end community moderation, viral trends curation & active retention growth.",
     cta: "Explore Social",
     link: "/services#social-media-management",
+    icon: "/icons/socialmedia.webp",
     shape: "orbit",
     background: "linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(14, 28, 120, 0.5) 100%)",
     shapeColor: "#f57210",
@@ -121,6 +130,7 @@ export const DEFAULT_SERVICES_ITEMS: ShapeShiftCardItem[] = [
     detail: "Data-driven media buying across Meta & TikTok with conversion funnel optimization.",
     cta: "Explore Ads",
     link: "/services#digital-advertising-campaign-management",
+    icon: "/icons/digitalservice.webp",
     shape: "diamond",
     background: "linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(11, 24, 140, 0.5) 100%)",
     shapeColor: "#00d2ff",
@@ -155,7 +165,63 @@ function pathFor(kind: string, animated: boolean) {
 function ShapeArt({ item, active, reduced }: { item: ShapeShiftCardItem; active: boolean; reduced: boolean }) {
   const kind = item.shape || "flower";
   const path = pathFor(kind, active);
-  const transition: Transition = reduced ? { duration: 0 } : { duration: 0.62, ease: [0.18, 0.76, 0.22, 1] as [number, number, number, number] };
+  const transition: Transition = reduced ? { duration: 0 } : { duration: 0.55, ease: [0.18, 0.76, 0.22, 1] as [number, number, number, number] };
+
+  if (item.icon) {
+    return (
+      <div
+        aria-hidden="true"
+        style={{
+          position: "relative",
+          width: "100%",
+          flex: "1 1 auto",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          padding: "0.75rem 0",
+          minHeight: 165,
+        }}
+      >
+        <motion.div
+          initial={false}
+          animate={{
+            scale: active ? 1.05 : 1,
+            y: active ? -4 : 0,
+          }}
+          transition={transition}
+          style={{
+            position: "relative",
+            width: "100%",
+            maxWidth: 215,
+            aspectRatio: "4 / 4.5",
+            borderRadius: 16,
+            overflow: "hidden",
+            border: active
+              ? `1.5px solid ${safeHex(item.shapeColor, "#fbc701")}`
+              : "1px solid rgba(255, 255, 255, 0.16)",
+            boxShadow: active
+              ? `0 16px 34px rgba(0, 0, 0, 0.45), 0 0 24px ${safeHex(item.shapeColor, "#fbc701")}40`
+              : "0 10px 24px rgba(0, 0, 0, 0.35)",
+            background: "#020a6b",
+            transition: "border-color 0.3s ease, box-shadow 0.3s ease",
+          }}
+        >
+          <img
+            src={item.icon}
+            alt=""
+            loading="lazy"
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              objectPosition: "center",
+              display: "block",
+            }}
+          />
+        </motion.div>
+      </div>
+    );
+  }
 
   return (
     <div
@@ -233,7 +299,7 @@ export interface ShapeShiftCardsProps {
 
 export function ShapeShiftCards({
   items = DEFAULT_SERVICES_ITEMS,
-  cardHeight = 440,
+  cardHeight = 470,
   cardGap = 16,
   minCardWidth = 260,
   radius = 22,
