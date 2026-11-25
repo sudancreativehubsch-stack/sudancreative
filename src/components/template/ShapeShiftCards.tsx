@@ -174,51 +174,38 @@ function ShapeArt({ item, active, reduced }: { item: ShapeShiftCardItem; active:
         style={{
           position: "relative",
           width: "100%",
-          flex: "1 1 auto",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          padding: "0.75rem 0",
-          minHeight: 165,
+          height: 220,
+          flexShrink: 0,
+          overflow: "hidden",
+          background: "#020a6b",
         }}
       >
-        <motion.div
+        <motion.img
+          src={item.icon}
+          alt=""
+          loading="eager"
           initial={false}
           animate={{
-            scale: active ? 1.05 : 1,
-            y: active ? -4 : 0,
+            scale: active ? 1.07 : 1,
           }}
           transition={transition}
           style={{
-            position: "relative",
             width: "100%",
-            maxWidth: 215,
-            aspectRatio: "4 / 4.5",
-            borderRadius: 16,
-            overflow: "hidden",
-            border: active
-              ? `1.5px solid ${safeHex(item.shapeColor, "#fbc701")}`
-              : "1px solid rgba(255, 255, 255, 0.16)",
-            boxShadow: active
-              ? `0 16px 34px rgba(0, 0, 0, 0.45), 0 0 24px ${safeHex(item.shapeColor, "#fbc701")}40`
-              : "0 10px 24px rgba(0, 0, 0, 0.35)",
-            background: "#020a6b",
-            transition: "border-color 0.3s ease, box-shadow 0.3s ease",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: "center",
+            display: "block",
           }}
-        >
-          <img
-            src={item.icon}
-            alt=""
-            loading="lazy"
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              objectPosition: "center",
-              display: "block",
-            }}
-          />
-        </motion.div>
+        />
+        {/* Soft bottom blend into card text area */}
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background: "linear-gradient(to bottom, rgba(2, 10, 107, 0.25) 0%, transparent 25%, transparent 68%, rgba(5, 11, 77, 0.96) 100%)",
+            pointerEvents: "none",
+          }}
+        />
       </div>
     );
   }
@@ -385,9 +372,8 @@ export function ShapeShiftCards({
         }
         @media (max-width: 639px) {
           .ssc-card {
-            padding: 1.25rem !important;
             border-radius: 18px !important;
-            min-height: 380px !important;
+            min-height: 400px !important;
           }
         }
       `}</style>
@@ -422,7 +408,8 @@ export function ShapeShiftCards({
               onMouseLeave={() => setHovered(null)}
               style={{
                 position: "relative",
-                height: Math.max(340, cardHeight),
+                minHeight: Math.max(360, cardHeight),
+                height: "100%",
                 minWidth: 0,
                 borderRadius: Math.max(0, radius),
                 background: item.background || "linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(10, 24, 85, 0.5) 100%)",
@@ -430,7 +417,7 @@ export function ShapeShiftCards({
                 display: "flex",
                 flexDirection: "column",
                 boxSizing: "border-box",
-                padding: Math.max(14, cardPadding),
+                padding: item.icon ? 0 : Math.max(14, cardPadding),
                 isolation: "isolate",
               }}
             >
@@ -442,6 +429,10 @@ export function ShapeShiftCards({
                   gap: 8,
                   alignItems: "center",
                   flexShrink: 0,
+                  padding: item.icon ? `${Math.max(16, cardPadding * 0.7)}px ${Math.max(16, cardPadding)}px 10px` : 0,
+                  background: item.icon ? "rgba(3, 10, 74, 0.85)" : "transparent",
+                  borderBottom: item.icon ? "1px solid rgba(255, 255, 255, 0.08)" : "none",
+                  zIndex: 1,
                 }}
               >
                 <span style={{ ...labelStyle, color: item.shapeColor || textColor }}>
@@ -459,16 +450,19 @@ export function ShapeShiftCards({
                 />
               </div>
 
-              {/* Parametric Morphing Shape Art */}
+              {/* Full-Width 3D Service Icon or Parametric SVG */}
               <ShapeArt item={item} active={active} reduced={reduced} />
 
               {/* Title & Description / Detail */}
               <div
                 style={{
-                  flexShrink: 0,
+                  flex: "1 1 auto",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "flex-start",
                   position: "relative",
-                  minHeight: 100,
-                  paddingBottom: hasLink ? 36 : 0,
+                  minHeight: 110,
+                  padding: item.icon ? `14px ${Math.max(16, cardPadding)}px ${hasLink ? Math.max(46, cardPadding + 28) : Math.max(18, cardPadding)}px` : `0 0 ${hasLink ? 36 : 0}px`,
                   pointerEvents: "none",
                 }}
               >
