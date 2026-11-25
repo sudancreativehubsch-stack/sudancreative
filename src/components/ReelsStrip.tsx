@@ -5,6 +5,7 @@ import { useRef, useState } from "react";
 export interface ReelItem {
   id: string;
   src: string;
+  poster?: string;
   client: string;
   tag?: string;
   dotColor?: string;
@@ -13,28 +14,32 @@ export interface ReelItem {
 const DEFAULT_REELS: ReelItem[] = [
   {
     id: "reel-1",
-    src: "https://res.cloudinary.com/npq7nirg/video/upload/v1795628342/%D8%A7%D9%84%D9%82%D8%B1%D9%88%D8%B4_%D8%B9%D9%85%D8%B1%D9%87%D8%A7_%D9%85%D8%A7_%D9%83%D8%A7%D9%86%D8%AA_%D8%B1%D9%82%D9%85_%D9%88%D8%A8%D8%B3.mp4",
+    src: "https://res.cloudinary.com/npq7nirg/video/upload/q_auto:good,w_720,f_mp4/v1795628342/%D8%A7%D9%84%D9%82%D8%B1%D9%88%D8%B4_%D8%B9%D9%85%D8%B1%D9%87%D8%A7_%D9%85%D8%A7_%D9%83%D8%A7%D9%86%D8%AA_%D8%B1%D9%82%D9%85_%D9%88%D8%A8%D8%B3.mp4",
+    poster: "https://res.cloudinary.com/npq7nirg/video/upload/so_1,w_640,q_auto,f_webp/v1795628342/%D8%A7%D9%84%D9%82%D8%B1%D9%88%D8%B4_%D8%B9%D9%85%D8%B1%D9%87%D8%A7_%D9%85%D8%A7_%D9%83%D8%A7%D9%86%D8%AA_%D8%B1%D9%82%D9%85_%D9%88%D8%A8%D8%B3.jpg",
     client: "Sudan Creative Hub",
     tag: "Commercial Brand Video",
     dotColor: "#fbc701",
   },
   {
     id: "reel-2",
-    src: "https://res.cloudinary.com/npq7nirg/video/upload/v1795630040/3.mp4",
+    src: "https://res.cloudinary.com/npq7nirg/video/upload/q_auto:good,w_720,f_mp4/v1795630040/3.mp4",
+    poster: "https://res.cloudinary.com/npq7nirg/video/upload/so_1,w_640,q_auto,f_webp/v1795630040/3.jpg",
     client: "Digital Medha Advertising",
     tag: "High-Retention Commercial",
     dotColor: "#f57210",
   },
   {
     id: "reel-3",
-    src: "https://res.cloudinary.com/npq7nirg/video/upload/v1795630062/%D8%B9%D9%85%D8%B1%D8%A9_%D8%A8%D8%AE%D8%AF%D9%85%D8%A7%D8%AA.mp4",
+    src: "https://res.cloudinary.com/npq7nirg/video/upload/q_auto:good,w_720,f_mp4/v1795630062/%D8%B9%D9%85%D8%B1%D8%A9_%D8%A8%D8%AE%D8%AF%D9%85%D8%A7%D8%AA.mp4",
+    poster: "https://res.cloudinary.com/npq7nirg/video/upload/so_1,w_640,q_auto,f_webp/v1795630062/%D8%B9%D9%85%D8%B1%D8%A9_%D8%A8%D8%AE%D8%AF%D9%85%D8%A7%D8%AA.jpg",
     client: "High-Retention Reel",
     tag: "Social Campaign & Ads",
     dotColor: "#fbc701",
   },
   {
     id: "reel-4",
-    src: "https://res.cloudinary.com/npq7nirg/video/upload/v1795630100/4.mp4",
+    src: "https://res.cloudinary.com/npq7nirg/video/upload/q_auto:good,w_720,f_mp4/v1795630100/4.mp4",
+    poster: "https://res.cloudinary.com/npq7nirg/video/upload/so_1,w_640,q_auto,f_webp/v1795630100/4.jpg",
     client: "Vision Rainbow",
     tag: "Brand Motion Reel",
     dotColor: "#f57210",
@@ -79,11 +84,12 @@ function ReelCard({ item, active = false }: { item: ReelItem; active?: boolean }
       <video
         ref={videoRef}
         src={item.src}
+        poster={item.poster}
         playsInline
         autoPlay={active}
         loop
         muted={muted}
-        preload={active ? "metadata" : "none"}
+        preload="metadata"
         className="reels-strip__video"
       />
 
