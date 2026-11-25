@@ -174,7 +174,7 @@ function ShapeArt({ item, active, reduced }: { item: ShapeShiftCardItem; active:
         style={{
           position: "relative",
           width: "100%",
-          height: 220,
+          aspectRatio: "3 / 4",
           flexShrink: 0,
           overflow: "hidden",
           background: "#020a6b",
@@ -186,23 +186,23 @@ function ShapeArt({ item, active, reduced }: { item: ShapeShiftCardItem; active:
           loading="eager"
           initial={false}
           animate={{
-            scale: active ? 1.07 : 1,
+            scale: active ? 1.04 : 1,
           }}
           transition={transition}
           style={{
             width: "100%",
             height: "100%",
-            objectFit: "cover",
+            objectFit: "contain",
             objectPosition: "center",
             display: "block",
           }}
         />
-        {/* Soft bottom blend into card text area */}
+        {/* Subtle bottom edge blend into card text area */}
         <div
           style={{
             position: "absolute",
             inset: 0,
-            background: "linear-gradient(to bottom, rgba(2, 10, 107, 0.25) 0%, transparent 25%, transparent 68%, rgba(5, 11, 77, 0.96) 100%)",
+            background: "linear-gradient(to bottom, transparent 84%, rgba(5, 11, 77, 0.96) 100%)",
             pointerEvents: "none",
           }}
         />
