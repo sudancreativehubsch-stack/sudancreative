@@ -97,14 +97,12 @@ interface StackCardProps {
   model: StackModelItem;
   index: number;
   total: number;
-  cardNumber: number;
-  rosterTotal: number;
   isTop: boolean;
   onSwipeOut: (dir: number) => void;
   whatsappNumber: string;
 }
 
-function StackCard({ model, index, total, cardNumber, rosterTotal, isTop, onSwipeOut, whatsappNumber }: StackCardProps) {
+function StackCard({ model, index, total, isTop, onSwipeOut, whatsappNumber }: StackCardProps) {
   const reduced = useReducedMotion() ?? false;
   const x = useMotionValue(0);
   const rotateDrag = useTransform(x, [-300, 0, 300], [-18, 0, 18]);
@@ -159,12 +157,8 @@ function StackCard({ model, index, total, cardNumber, rosterTotal, isTop, onSwip
           />
         </div>
 
-        {/* Dedicated Footer Bar Below Poster (No Image Overlap) */}
+        {/* Dedicated Footer Bar Below Poster (No Counter Pill, Clean Book Button) */}
         <div className="gallery-stack__bottom-info">
-          <span className="gallery-stack__counter-pill">
-            {String(cardNumber).padStart(2, "0")} / {String(rosterTotal).padStart(2, "0")}
-          </span>
-
           <div className="gallery-stack__actions">
             <a
               href={waLink(whatsappNumber, `Hello Sudan Creative Hub, I would like to book ${model.name} for a project.`)}
@@ -248,26 +242,48 @@ export function GalleryStack({
           {/* Ambient Lighting Behind Deck */}
           <div className="gallery-stack__ambient-glow" aria-hidden="true" />
 
-          {/* Cards Stage */}
-          <div
-            className="gallery-stack__stage"
-            onClick={handleNext}
-            role="region"
-            aria-label="Model photo stack. Click to cycle to next model"
-          >
-            {deck.slice(0, 5).map((model, idx) => (
-              <StackCard
-                key={model.id}
-                model={model}
-                index={idx}
-                total={Math.min(5, deck.length)}
-                cardNumber={Math.max(1, models.findIndex((m) => m.id === model.id) + 1)}
-                rosterTotal={models.length}
-                isTop={idx === 0}
-                onSwipeOut={handleNext}
-                whatsappNumber={whatsapp}
-              />
-            ))}
+          {/* Cards Stage with Prominent Left / Right Side Arrows */}
+          <div className="gallery-stack__stage-row">
+            <button
+              type="button"
+              className="gallery-stack__side-arrow gallery-stack__side-arrow--prev"
+              onClick={handlePrev}
+              aria-label="Previous model"
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+            </button>
+
+            <div
+              className="gallery-stack__stage"
+              onClick={handleNext}
+              role="region"
+              aria-label="Model photo stack. Click to cycle to next model"
+            >
+              {deck.slice(0, 5).map((model, idx) => (
+                <StackCard
+                  key={model.id}
+                  model={model}
+                  index={idx}
+                  total={Math.min(5, deck.length)}
+                  isTop={idx === 0}
+                  onSwipeOut={handleNext}
+                  whatsappNumber={whatsapp}
+                />
+              ))}
+            </div>
+
+            <button
+              type="button"
+              className="gallery-stack__side-arrow gallery-stack__side-arrow--next"
+              onClick={handleNext}
+              aria-label="Next model"
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+            </button>
           </div>
 
           {/* Stack Navigation & Controls Bar */}
