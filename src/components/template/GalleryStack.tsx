@@ -97,12 +97,14 @@ interface StackCardProps {
   model: StackModelItem;
   index: number;
   total: number;
+  cardNumber: number;
+  rosterTotal: number;
   isTop: boolean;
   onSwipeOut: (dir: number) => void;
   whatsappNumber: string;
 }
 
-function StackCard({ model, index, total, isTop, onSwipeOut, whatsappNumber }: StackCardProps) {
+function StackCard({ model, index, total, cardNumber, rosterTotal, isTop, onSwipeOut, whatsappNumber }: StackCardProps) {
   const reduced = useReducedMotion() ?? false;
   const x = useMotionValue(0);
   const rotateDrag = useTransform(x, [-300, 0, 300], [-18, 0, 18]);
@@ -160,7 +162,7 @@ function StackCard({ model, index, total, isTop, onSwipeOut, whatsappNumber }: S
         {/* Dedicated Footer Bar Below Poster (No Image Overlap) */}
         <div className="gallery-stack__bottom-info">
           <span className="gallery-stack__counter-pill">
-            {String(index + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
+            {String(cardNumber).padStart(2, "0")} / {String(rosterTotal).padStart(2, "0")}
           </span>
 
           <div className="gallery-stack__actions">
@@ -219,7 +221,7 @@ export function GalleryStack({
       const rest = prev.slice(0, prev.length - 1);
       return [last, ...rest];
     });
-    setSwipeCount((c) => Math.max(0, c - 1));
+    setSwipeCount((c) => c - 1);
   };
 
   const activeModel = deck[0];
@@ -259,6 +261,8 @@ export function GalleryStack({
                 model={model}
                 index={idx}
                 total={Math.min(5, deck.length)}
+                cardNumber={Math.max(1, models.findIndex((m) => m.id === model.id) + 1)}
+                rosterTotal={models.length}
                 isTop={idx === 0}
                 onSwipeOut={handleNext}
                 whatsappNumber={whatsapp}
