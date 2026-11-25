@@ -18,72 +18,80 @@ export interface StackModelItem {
 export const DEFAULT_STACK_MODELS: StackModelItem[] = [
   {
     id: "m-1",
-    name: "Vanessa Noble",
-    category: "Editorial & Runway",
-    specs: "Height 178cm · Runway & High Fashion",
-    photo: "/models/model-1.jpg",
-    slug: "vanessa-noble",
+    name: "Khatab Alfarogi",
+    category: "Media Presenter",
+    specs: "Media Presenter · Commercial & Brand Campaigns",
+    photo: "/showcase/1.webp",
+    slug: "khatab-alfarogi",
   },
   {
     id: "m-2",
-    name: "Tariq Malik",
-    category: "Commercial & Film",
-    specs: "Height 185cm · Commercial & Cinematic",
-    photo: "/models/model-3.jpg",
-    slug: "tariq-malik",
+    name: "Moumen Kholousi",
+    category: "Media Presenter",
+    specs: "Media Presenter · Video & Hosting",
+    photo: "/showcase/2.webp",
+    slug: "moumen-kholousi",
   },
   {
     id: "m-3",
-    name: "Minerva Bridges",
-    category: "Runway & Vogue",
-    specs: "Height 180cm · Editorial & Luxury",
-    photo: "/models/model-4.jpg",
-    slug: "minerva-bridges",
+    name: "Elshafeai Abdelmonim",
+    category: "Media Presenter",
+    specs: "Media Presenter · Brand & Commercial",
+    photo: "/showcase/3.webp",
+    slug: "elshafeai-abdelmonim",
   },
   {
     id: "m-4",
-    name: "Karim Mansoor",
-    category: "Commercial & Fitness",
-    specs: "Height 183cm · Action & Fitness",
-    photo: "/models/model-6.jpg",
-    slug: "karim-mansoor",
+    name: "Nagham Sid Ahmad",
+    category: "Media Presenter",
+    specs: "Media Presenter · Editorial & Campaigns",
+    photo: "/showcase/4.webp",
+    slug: "nagham-sid-ahmad",
   },
   {
     id: "m-5",
-    name: "Amina Nour",
-    category: "Beauty & Fashion",
-    specs: "Height 175cm · Beauty & Commercial",
-    photo: "/models/model-2.jpg",
-    slug: "amina-nour",
+    name: "Abdalla Ghandi Abdalla",
+    category: "Media Presenter",
+    specs: "Media Presenter · Film & Commercials",
+    photo: "/showcase/5.webp",
+    slug: "abdalla-ghandi-abdalla",
   },
   {
     id: "m-6",
-    name: "Zayn Hassan",
-    category: "Lifestyle & Editorial",
-    specs: "Height 182cm · Lifestyle & Fashion",
-    photo: "/models/model-5.jpg",
-    slug: "zayn-hassan",
+    name: "Qaba Ja'far",
+    category: "Media Presenter",
+    specs: "Media Presenter · Digital & Brand Reels",
+    photo: "/showcase/6.webp",
+    slug: "qaba-jafar",
   },
   {
     id: "m-7",
-    name: "Layla Othman",
-    category: "Commercial Ads",
-    specs: "Height 176cm · Video Campaigns",
-    photo: "/models/model-7.jpg",
-    slug: "layla-othman",
+    name: "Rana Ali Hajo",
+    category: "Media Presenter",
+    specs: "Media Presenter · Lifestyle & Commercial",
+    photo: "/showcase/7.webp",
+    slug: "rana-ali-hajo",
   },
   {
     id: "m-8",
-    name: "Farah Idris",
-    category: "Runway & High Glamour",
-    specs: "Height 179cm · Fashion Week & Stills",
-    photo: "/models/model-8.jpg",
-    slug: "farah-idris",
+    name: "Tasabih",
+    category: "Media Presenter",
+    specs: "Media Presenter · Hosting & Campaigns",
+    photo: "/showcase/8.webp",
+    slug: "tasabih",
+  },
+  {
+    id: "m-9",
+    name: "Saad Al-Faki",
+    category: "Media Presenter",
+    specs: "Media Presenter · Broadcast & Brand Ads",
+    photo: "/showcase/9.webp",
+    slug: "saad-al-faki",
   },
 ];
 
 // Aesthetic natural tilt angles mimicking a shuffled physical Polaroid deck
-const TILT_ANGLES = [0, -3.5, 4, -2.5, 3, -4.5, 2.5, -2];
+const TILT_ANGLES = [0, -3.5, 4, -2.5, 3, -4.5, 2.5, -2, 3.5];
 
 interface StackCardProps {
   model: StackModelItem;
@@ -153,7 +161,7 @@ function StackCard({ model, index, total, isTop, onSwipeOut, whatsappNumber }: S
         {/* Top Pill: Index Counter + Category */}
         <div className="gallery-stack__top-bar">
           <span className="gallery-stack__counter-pill">
-            0{index + 1} · {model.category}
+            {String(index + 1).padStart(2, "0")} · {model.category}
           </span>
           <span className="gallery-stack__live-dot" aria-hidden="true" />
         </div>
@@ -187,6 +195,7 @@ export interface GalleryStackProps {
   whatsapp?: string;
   title?: string;
   subtitle?: string;
+  hideFooterCta?: boolean;
 }
 
 export function GalleryStack({
@@ -194,9 +203,15 @@ export function GalleryStack({
   whatsapp = "249963565781",
   title = "Models & Talent Casting",
   subtitle = "Interactive talent deck. Click, swipe, or tap to shuffle through our roster.",
+  hideFooterCta = false,
 }: GalleryStackProps) {
   const [deck, setDeck] = React.useState<StackModelItem[]>(models);
   const [swipeCount, setSwipeCount] = React.useState(0);
+
+  React.useEffect(() => {
+    setDeck(models);
+    setSwipeCount(0);
+  }, [models]);
 
   const handleNext = () => {
     setDeck((prev) => {
@@ -297,12 +312,14 @@ export function GalleryStack({
             </button>
           </div>
 
-          {/* Direct CTA: View All 24+ Models */}
-          <div className="gallery-stack__footer-actions">
-            <Link href="/models" className="btn btn--primary-glow">
-              Explore Full Talent Roster (24+ Models) <GrowthArrow />
-            </Link>
-          </div>
+          {/* Direct CTA: View All Talent */}
+          {!hideFooterCta && (
+            <div className="gallery-stack__footer-actions">
+              <Link href="/models" className="btn btn--primary-glow">
+                Explore Full Talent Roster ({models.length} Talent) <GrowthArrow />
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </section>
