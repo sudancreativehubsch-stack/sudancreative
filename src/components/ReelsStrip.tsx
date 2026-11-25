@@ -20,31 +20,24 @@ const DEFAULT_REELS: ReelItem[] = [
   },
   {
     id: "reel-2",
-    src: "/reels/reel-2.mp4",
+    src: "https://res.cloudinary.com/npq7nirg/video/upload/v1795630040/3.mp4",
     client: "Digital Medha Advertising",
     tag: "High-Retention Commercial",
     dotColor: "#f57210",
   },
   {
     id: "reel-3",
-    src: "/reels/reel-3.mp4",
+    src: "https://res.cloudinary.com/npq7nirg/video/upload/v1795630062/%D8%B9%D9%85%D8%B1%D8%A9_%D8%A8%D8%AE%D8%AF%D9%85%D8%A7%D8%AA.mp4",
     client: "High-Retention Reel",
     tag: "Social Campaign & Ads",
     dotColor: "#fbc701",
   },
   {
     id: "reel-4",
-    src: "/reels/reel-4.mp4",
+    src: "https://res.cloudinary.com/npq7nirg/video/upload/v1795630100/4.mp4",
     client: "Vision Rainbow",
     tag: "Brand Motion Reel",
     dotColor: "#f57210",
-  },
-  {
-    id: "reel-5",
-    src: "/reels/reel-5.mp4",
-    client: "Cinematic Movement Story",
-    tag: "Commercial Film",
-    dotColor: "#fbc701",
   },
 ];
 
