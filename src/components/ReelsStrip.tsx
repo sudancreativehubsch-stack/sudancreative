@@ -6,6 +6,7 @@ export interface ReelItem {
   id: string;
   src: string;
   poster?: string;
+  cover?: boolean;
   client: string;
   tag?: string;
   dotColor?: string;
@@ -32,6 +33,7 @@ const DEFAULT_REELS: ReelItem[] = [
     id: "reel-3",
     src: "https://res.cloudinary.com/npq7nirg/video/upload/v1795630062/%D8%B9%D9%85%D8%B1%D8%A9_%D8%A8%D8%AE%D8%AF%D9%85%D8%A7%D8%AA.mp4",
     poster: "https://res.cloudinary.com/npq7nirg/video/upload/so_1,q_auto,f_webp/v1795630062/%D8%B9%D9%85%D8%B1%D8%A9_%D8%A8%D8%AE%D8%AF%D9%85%D8%A7%D8%AA.jpg",
+    cover: true,
     client: "Reel 3",
     tag: "Social Campaign & Ads",
     dotColor: "#fbc701",
@@ -81,6 +83,16 @@ function ReelCard({ item, active = false }: { item: ReelItem; active?: boolean }
       role="region"
       aria-label={`${item.client} reel`}
     >
+      {/* Ambient blurred backdrop for 1:1 / 16:9 reels inside 9:16 card */}
+      {!item.cover && item.poster && (
+        <img
+          src={item.poster}
+          alt=""
+          aria-hidden="true"
+          className="reels-strip__backdrop"
+        />
+      )}
+
       <video
         ref={videoRef}
         src={item.src}
@@ -90,7 +102,7 @@ function ReelCard({ item, active = false }: { item: ReelItem; active?: boolean }
         loop
         muted={muted}
         preload="metadata"
-        className="reels-strip__video"
+        className={`reels-strip__video ${item.cover ? "reels-strip__video--cover" : ""}`}
       />
 
       {/* Center play icon when paused */}
