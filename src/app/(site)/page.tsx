@@ -2,6 +2,7 @@ import Link from "next/link";
 import { TwistBand } from "@/components/template/TwistBand";
 import { DotPattern } from "@/components/template/DotPattern";
 import { BandUnroll } from "@/components/template/BandUnroll";
+import { RibbonMarquee } from "@/components/template/RibbonMarquee";
 import { ServicesGlassGrid } from "@/components/ServicesGlassGrid";
 import { ProcessFramework } from "@/components/ProcessFramework";
 import { BrandShowcase } from "@/components/BrandShowcase";
@@ -181,6 +182,21 @@ export default async function Home() {
       <FadeIn delay={0.1}>
         <ProcessFramework />
       </FadeIn>
+
+      {/* ==============================================================
+          6. RIBBON MARQUEE: WAVING ENDLESS CARD RIBBON (SWAPPED)
+          ============================================================== */}
+      <section className="ribbon-marquee-wrap">
+        <RibbonMarquee
+          ribbonWidth={85}
+          amplitude={55}
+          wavelength={960}
+          cardWidth={105}
+          cardHeight={145}
+          gap={60}
+          speed={50}
+        />
+      </section>
 
       {/* ==============================================================
           7. OUR TALENT: COMPACT SPOTLIGHT (LINKING TO FULL ROSTER)
