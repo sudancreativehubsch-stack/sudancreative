@@ -30,8 +30,8 @@ const DEFAULT_REELS: ReelItem[] = [
   },
   {
     id: "reel-3",
-    src: "https://res.cloudinary.com/npq7nirg/video/upload/w_720,h_1280,c_scale,q_auto:good,f_mp4/v1795630062/%D8%B9%D9%85%D8%B1%D8%A9_%D8%A8%D8%AE%D8%AF%D9%85%D8%A7%D8%AA.mp4",
-    poster: "https://res.cloudinary.com/npq7nirg/video/upload/so_1,w_720,h_1280,c_scale,q_auto,f_webp/v1795630062/%D8%B9%D9%85%D8%B1%D8%A9_%D8%A8%D8%AE%D8%AF%D9%85%D8%A7%D8%AA.jpg",
+    src: "https://res.cloudinary.com/npq7nirg/video/upload/v1795630062/%D8%B9%D9%85%D8%B1%D8%A9_%D8%A8%D8%AE%D8%AF%D9%85%D8%A7%D8%AA.mp4",
+    poster: "https://res.cloudinary.com/npq7nirg/video/upload/so_1,q_auto,f_webp/v1795630062/%D8%B9%D9%85%D8%B1%D8%A9_%D8%A8%D8%AE%D8%AF%D9%85%D8%A7%D8%AA.jpg",
     client: "Reel 3",
     tag: "Social Campaign & Ads",
     dotColor: "#fbc701",
