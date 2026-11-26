@@ -2,7 +2,6 @@ import Link from "next/link";
 import { TwistBand } from "@/components/template/TwistBand";
 import { DotPattern } from "@/components/template/DotPattern";
 import { BandUnroll } from "@/components/template/BandUnroll";
-import { RibbonMarquee } from "@/components/template/RibbonMarquee";
 import { ServicesGlassGrid } from "@/components/ServicesGlassGrid";
 import { ProcessFramework } from "@/components/ProcessFramework";
 import { BrandShowcase } from "@/components/BrandShowcase";
@@ -150,18 +149,23 @@ export default async function Home() {
       </section>
 
       {/* ==============================================================
-          3. RIBBON MARQUEE: WAVING ENDLESS CARD RIBBON (FROM TEMPLATE)
+          3. HIGHLIGHTED REELS: OUR WORK & 9:16 CLIENT REELS STRIP
           ============================================================== */}
-      <section className="ribbon-marquee-wrap">
-        <RibbonMarquee
-          ribbonWidth={85}
-          amplitude={55}
-          wavelength={960}
-          cardWidth={105}
-          cardHeight={145}
-          gap={60}
-          speed={50}
-        />
+      <section className="dark-cinema-section" aria-labelledby="work-heading">
+        <div className="wrap">
+          <div className="dark-cinema-header">
+            <span className="dark-pill-tag">Portfolio &amp; Selected Works</span>
+            <h2 id="work-heading" className="dark-cinema-title">
+              OUR WORK<span className="dark-dot">.</span>
+            </h2>
+            <p className="dark-cinema-subtitle">
+              Making waves with high-retention commercial films and viral 9:16 social campaigns.
+            </p>
+          </div>
+        </div>
+
+        {/* 9:16 Client Reels Strip with Slow Infinite Loop */}
+        <ReelsStrip />
       </section>
 
       {/* ==============================================================
@@ -177,26 +181,6 @@ export default async function Home() {
       <FadeIn delay={0.1}>
         <ProcessFramework />
       </FadeIn>
-
-      {/* ==============================================================
-          6. CINEMATIC DARK CANVAS: OUR WORK & REELS STRIP
-          ============================================================== */}
-      <section className="dark-cinema-section" aria-labelledby="work-heading">
-        <div className="wrap">
-          <div className="dark-cinema-header">
-            <span className="dark-pill-tag">Portfolio &amp; Selected Works</span>
-            <h2 id="work-heading" className="dark-cinema-title">
-              OUR WORK<span className="dark-dot">.</span>
-            </h2>
-            <p className="dark-cinema-subtitle">
-              Making waves with high-retention commercial films and viral 9:16 social campaigns.
-            </p>
-          </div>
-        </div>
-
-        {/* 9:16 Client Reels Strip with Interactive Carousel & Modal */}
-        <ReelsStrip />
-      </section>
 
       {/* ==============================================================
           7. OUR TALENT: COMPACT SPOTLIGHT (LINKING TO FULL ROSTER)
